@@ -29,7 +29,6 @@ export async function POST(req: NextRequest) {
         OR: [
           { username: 'maruthifurnitures001@gmail.com' },
           { role: 'owner' },
-          { username: 'admin' },
         ],
       },
     })
