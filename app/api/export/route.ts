@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,6 +11,11 @@ function escapeCsv(val: any): string {
 }
 
 export async function GET(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const { searchParams } = new URL(req.url)
     const type = searchParams.get('type') || 'bills'
@@ -137,6 +143,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ error: 'Invalid export type' }, { status: 400 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Export error:', error)
+    return NextResponse.json({ error: 'Failed to generate export' }, { status: 500 })
   }
 }

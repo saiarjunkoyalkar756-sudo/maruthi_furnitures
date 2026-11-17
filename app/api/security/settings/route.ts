@@ -1,11 +1,17 @@
-import { NextResponse } from 'next/server'
-import { getSecurityLock, getTelegramConfig, verifyBotToken } from '@/lib/telegramBot'
+import { NextRequest, NextResponse } from 'next/server'
+import { getSecurityLock, getTelegramConfig, verifyBotToken, checkAndRotateDailyPin } from '@/lib/telegramBot'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const session = await getSessionFromRequest(req)
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const lock = await getSecurityLock()
     const config = await getTelegramConfig()
 
@@ -27,20 +33,46 @@ export async function GET() {
       lockUpdatedAt: lock.updatedAt,
       botToken: config.botToken ? `${config.botToken.substring(0, 8)}...` : '',
       hasToken: Boolean(config.botToken),
-      rawToken: config.botToken,
       chatId: config.chatId,
       isTelegramActive: config.isActive,
       botInfo,
+      lock: {
+        id: lock.id,
+        pinCode: lock.pinCode,
+        isLocked: lock.isLocked,
+        lastRotatedDate: lock.lastRotatedDate,
+        updatedBy: lock.updatedBy,
+      },
+      telegram: {
+        id: config.id,
+        chatId: config.chatId,
+        isActive: config.isActive,
+      },
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Security settings error:', error)
+    return NextResponse.json({ error: 'Failed to fetch security settings' }, { status: 500 })
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
+    const session = await getSessionFromRequest(req)
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const body = await req.json()
-    const { pinCode, botToken, chatId } = body
+    const { pinCode, botToken, chatId, rotatePin } = body
+
+    if (rotatePin) {
+      const newLock = await checkAndRotateDailyPin(true)
+      return NextResponse.json({
+        success: true,
+        message: 'PIN rotated successfully',
+        lock: newLock,
+      })
+    }
 
     const lock = await getSecurityLock()
     const config = await getTelegramConfig()
@@ -86,7 +118,8 @@ export async function POST(req: Request) {
       message: 'Security settings updated successfully',
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Update security settings error:', error)
+    return NextResponse.json({ error: 'Failed to update security settings' }, { status: 500 })
   }
 }
 

@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export async function GET(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const { searchParams } = new URL(req.url)
     const category = searchParams.get('category') || ''
@@ -70,11 +76,17 @@ export async function GET(req: NextRequest) {
       },
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Expenses GET error:', error)
+    return NextResponse.json({ error: 'Failed to retrieve expenses' }, { status: 500 })
   }
 }
 
 export async function POST(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const body = await req.json()
     const { category, amount, note, date } = body
@@ -83,22 +95,33 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Category and amount are required' }, { status: 400 })
     }
 
+    const parsedAmount = parseFloat(amount)
+    if (isNaN(parsedAmount) || parsedAmount <= 0) {
+      return NextResponse.json({ error: 'Amount must be a positive number' }, { status: 400 })
+    }
+
     const expense = await prisma.expense.create({
       data: {
-        category,
-        amount: parseFloat(amount),
-        note: note || '',
+        category: String(category).trim(),
+        amount: parsedAmount,
+        note: note ? String(note).trim() : '',
         date: date ? new Date(date) : new Date(),
       },
     })
 
     return NextResponse.json(expense, { status: 201 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Expenses POST error:', error)
+    return NextResponse.json({ error: 'Failed to record expense' }, { status: 500 })
   }
 }
 
 export async function DELETE(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const { searchParams } = new URL(req.url)
     const id = parseInt(searchParams.get('id') || '')
@@ -108,7 +131,8 @@ export async function DELETE(req: NextRequest) {
     await prisma.expense.delete({ where: { id } })
     return NextResponse.json({ success: true })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Expenses DELETE error:', error)
+    return NextResponse.json({ error: 'Failed to delete expense' }, { status: 500 })
   }
 }
 

@@ -1,11 +1,17 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { getSecurityLock } from '@/lib/telegramBot'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const session = await getSessionFromRequest(req)
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const lock = await getSecurityLock()
     return NextResponse.json({
       isLocked: lock.isLocked,
@@ -13,12 +19,18 @@ export async function GET() {
       updatedAt: lock.updatedAt,
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Security status error:', error)
+    return NextResponse.json({ error: 'Failed to fetch status' }, { status: 500 })
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
+    const session = await getSessionFromRequest(req)
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const body = await req.json()
     const { action } = body // 'lock' | 'unlock'
     const lock = await getSecurityLock()
@@ -36,7 +48,8 @@ export async function POST(req: Request) {
       isLocked: updated.isLocked,
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Update status error:', error)
+    return NextResponse.json({ error: 'Failed to update security status' }, { status: 500 })
   }
 }
 

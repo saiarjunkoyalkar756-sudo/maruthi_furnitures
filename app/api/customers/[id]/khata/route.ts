@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const customerId = parseInt(params.id)
     if (!customerId) {
@@ -37,11 +43,17 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       billsCount: customer.bills.length,
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Customer Khata GET error:', error)
+    return NextResponse.json({ error: 'Failed to retrieve customer khata' }, { status: 500 })
   }
 }
 
 export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const customerId = parseInt(params.id)
     const body = await req.json()
@@ -99,6 +111,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
       message: `Recorded payment of ₹${paymentAmt.toLocaleString('en-IN')}`,
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Customer Khata POST error:', error)
+    return NextResponse.json({ error: 'Failed to record customer payment' }, { status: 500 })
   }
 }

@@ -2,9 +2,21 @@
 const http = require('http')
 
 const POLL_INTERVAL_MS = 2500
+const INTERNAL_SECRET = process.env.INTERNAL_API_SECRET || 'maruthi-internal-worker-auth'
 
 function poll() {
-  const req = http.get('http://127.0.0.1:3000/api/security/telegram/poll', (res) => {
+  const options = {
+    hostname: '127.0.0.1',
+    port: 3000,
+    path: '/api/security/telegram/poll',
+    method: 'GET',
+    headers: {
+      'x-worker-secret': INTERNAL_SECRET,
+    },
+    timeout: 5000,
+  }
+
+  const req = http.request(options, (res) => {
     let raw = ''
     res.on('data', (chunk) => {
       raw += chunk
@@ -20,10 +32,12 @@ function poll() {
     setTimeout(poll, POLL_INTERVAL_MS * 2)
   })
 
-  req.setTimeout(5000, () => {
+  req.on('timeout', () => {
     req.destroy()
     setTimeout(poll, POLL_INTERVAL_MS)
   })
+
+  req.end()
 }
 
 console.log('[Telegram Poller] Starting background polling service...')

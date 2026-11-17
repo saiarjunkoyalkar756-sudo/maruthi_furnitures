@@ -1,11 +1,17 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { getSecurityLock } from '@/lib/telegramBot'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
+    const session = await getSessionFromRequest(req)
+    if (!session) {
+      return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 })
+    }
+
     const { pin } = await req.json()
     if (!pin) {
       return NextResponse.json({ success: false, error: 'PIN code is required' }, { status: 400 })
@@ -35,7 +41,8 @@ export async function POST(req: Request) {
       isLocked: false,
     })
   } catch (error: any) {
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 })
+    console.error('Verify PIN error:', error)
+    return NextResponse.json({ success: false, error: 'Failed to verify PIN' }, { status: 500 })
   }
 }
 

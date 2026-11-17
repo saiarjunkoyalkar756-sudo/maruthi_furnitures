@@ -1,16 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
-export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
-  const bill = await prisma.bill.findUnique({
-    where: { id: parseInt(params.id) },
-    include: { items: true, customer: true },
-  })
-  if (!bill) return NextResponse.json({ error: 'Not found' }, { status: 404 })
-  return NextResponse.json(bill)
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
+  try {
+    const bill = await prisma.bill.findUnique({
+      where: { id: parseInt(params.id) },
+      include: { items: true, customer: true },
+    })
+    if (!bill) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+    return NextResponse.json(bill)
+  } catch (error: any) {
+    console.error('Bill GET error:', error)
+    return NextResponse.json({ error: 'Failed to retrieve bill' }, { status: 500 })
+  }
 }
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const id = parseInt(params.id)
     const body = await req.json()
@@ -47,12 +63,24 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
     return NextResponse.json(updated)
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Bill PUT error:', error)
+    return NextResponse.json({ error: 'Failed to update bill' }, { status: 500 })
   }
 }
 
-export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
-  await prisma.billItem.deleteMany({ where: { billId: parseInt(params.id) } })
-  await prisma.bill.delete({ where: { id: parseInt(params.id) } })
-  return NextResponse.json({ ok: true })
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
+  try {
+    const id = parseInt(params.id)
+    await prisma.billItem.deleteMany({ where: { billId: id } })
+    await prisma.bill.delete({ where: { id } })
+    return NextResponse.json({ ok: true })
+  } catch (error: any) {
+    console.error('Bill DELETE error:', error)
+    return NextResponse.json({ error: 'Failed to delete bill' }, { status: 500 })
+  }
 }

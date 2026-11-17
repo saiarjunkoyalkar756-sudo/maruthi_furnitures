@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { verifySessionToken, AUTH_COOKIE_NAME } from '@/lib/auth'
+import { getSessionFromRequest } from '@/lib/auth'
 import { prisma } from '@/lib/db'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET(req: NextRequest) {
   try {
-    const token = req.cookies.get(AUTH_COOKIE_NAME)?.value
-    const session = await verifySessionToken(token)
+    const session = await getSessionFromRequest(req)
 
     if (!session) {
       return NextResponse.json({ authenticated: false, user: null }, { status: 401 })
@@ -31,6 +32,7 @@ export async function GET(req: NextRequest) {
       },
     })
   } catch (error: any) {
-    return NextResponse.json({ authenticated: false, error: error.message }, { status: 500 })
+    console.error('Auth me error:', error)
+    return NextResponse.json({ authenticated: false, error: 'Internal server error' }, { status: 500 })
   }
 }

@@ -1,10 +1,16 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { getTelegramConfig, sendTelegramMessage } from '@/lib/telegramBot'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
+    const session = await getSessionFromRequest(req)
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const config = await getTelegramConfig()
     if (!config.botToken || !config.chatId) {
       return NextResponse.json(
@@ -32,7 +38,8 @@ export async function POST(req: Request) {
       )
     }
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Telegram test error:', error)
+    return NextResponse.json({ error: 'Failed to test Telegram connection' }, { status: 500 })
   }
 }
 

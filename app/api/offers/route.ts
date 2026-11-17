@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 // Blacklist of sample/dummy placeholder numbers to filter out
 const DUMMY_PHONES = new Set([
@@ -22,7 +23,12 @@ function isDummyPhone(phone: string): boolean {
   return false
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const [offers, dbBills, dbCustomers] = await Promise.all([
       prisma.offer.findMany({
@@ -146,11 +152,17 @@ export async function GET() {
       billedCustomersCount: customers.filter((c) => c.billsCount > 0).length,
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Offers GET error:', error)
+    return NextResponse.json({ error: 'Failed to retrieve offers' }, { status: 500 })
   }
 }
 
 export async function POST(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const body = await req.json()
     const { title, message, discountPercent, validTill } = body
@@ -187,8 +199,8 @@ export async function POST(req: NextRequest) {
 
     const offer = await prisma.offer.create({
       data: {
-        title,
-        message,
+        title: String(title).trim(),
+        message: String(message).trim(),
         discountPercent: parseFloat(discountPercent) || 0,
         validTill: validTill ? new Date(validTill) : null,
         sentCount: phones.size,
@@ -201,6 +213,7 @@ export async function POST(req: NextRequest) {
       recipientCount: phones.size,
     })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Offers POST error:', error)
+    return NextResponse.json({ error: 'Failed to create offer' }, { status: 500 })
   }
 }

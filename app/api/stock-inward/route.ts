@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export async function GET(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const { searchParams } = new URL(req.url)
     const limit = parseInt(searchParams.get('limit') || '50')
@@ -18,11 +24,17 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ inwards })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Stock inward GET error:', error)
+    return NextResponse.json({ error: 'Failed to retrieve stock inward records' }, { status: 500 })
   }
 }
 
 export async function POST(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const body = await req.json()
     const { productId, qty, costPrice, supplier, invoiceNo, notes, addToExpenses } = body
@@ -76,6 +88,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true, inward, updatedProduct }, { status: 201 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Stock inward POST error:', error)
+    return NextResponse.json({ error: 'Failed to record stock inward' }, { status: 500 })
   }
 }

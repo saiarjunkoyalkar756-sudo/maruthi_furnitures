@@ -1,5 +1,6 @@
 // Robust, Edge-compatible HMAC-SHA256 Auth Session Engine
 // Compatible with both Node.js API routes and Next.js Edge Middleware
+import { NextRequest } from 'next/server'
 
 export const AUTH_COOKIE_NAME = 'maruthi_auth_token'
 const AUTH_SECRET = process.env.AUTH_SECRET || 'maruthi-furnitures-secret-key-2026-secure-session'
@@ -108,4 +109,15 @@ export async function verifySessionToken(token: string | undefined | null): Prom
   } catch {
     return null
   }
+}
+
+/**
+ * Extracts and verifies session payload directly from request cookies or Authorization header
+ */
+export async function getSessionFromRequest(req: NextRequest): Promise<SessionPayload | null> {
+  const cookieToken = req.cookies.get(AUTH_COOKIE_NAME)?.value
+  const authHeader = req.headers.get('authorization')
+  const bearerToken = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null
+  const token = cookieToken || bearerToken
+  return verifySessionToken(token)
 }

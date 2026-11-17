@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { getSessionFromRequest } from '@/lib/auth'
 
 export async function GET(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const { searchParams } = new URL(req.url)
     const limit = parseInt(searchParams.get('limit') || '200')
@@ -28,19 +34,29 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ products })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Products GET error:', error)
+    return NextResponse.json({ error: 'Failed to retrieve products' }, { status: 500 })
   }
 }
 
 export async function POST(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const body = await req.json()
+    if (!body.name || typeof body.name !== 'string') {
+      return NextResponse.json({ error: 'Product name is required' }, { status: 400 })
+    }
+
     const wholesale = parseFloat(body.wholesalePrice || body.costPrice) || 0
     const retail = parseFloat(body.retailPrice || body.price) || 0
 
     const product = await prisma.product.create({
       data: {
-        name: body.name,
+        name: body.name.trim(),
         category: body.category || 'General',
         description: body.description || '',
         wholesalePrice: wholesale,
@@ -56,11 +72,17 @@ export async function POST(req: NextRequest) {
     })
     return NextResponse.json(product, { status: 201 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Products POST error:', error)
+    return NextResponse.json({ error: 'Failed to create product' }, { status: 500 })
   }
 }
 
 export async function PUT(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const body = await req.json()
     const id = parseInt(body.id)
@@ -90,11 +112,17 @@ export async function PUT(req: NextRequest) {
     })
     return NextResponse.json(updated)
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Products PUT error:', error)
+    return NextResponse.json({ error: 'Failed to update product' }, { status: 500 })
   }
 }
 
 export async function DELETE(req: NextRequest) {
+  const session = await getSessionFromRequest(req)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized: Authentication required' }, { status: 401 })
+  }
+
   try {
     const { searchParams } = new URL(req.url)
     const id = parseInt(searchParams.get('id') || '')
@@ -104,6 +132,7 @@ export async function DELETE(req: NextRequest) {
     await prisma.product.delete({ where: { id } })
     return NextResponse.json({ success: true })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    console.error('Products DELETE error:', error)
+    return NextResponse.json({ error: 'Failed to delete product' }, { status: 500 })
   }
 }
