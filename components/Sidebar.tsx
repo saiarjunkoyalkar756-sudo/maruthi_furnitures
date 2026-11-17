@@ -140,20 +140,18 @@ export default function Sidebar() {
                     style={{
                       backgroundColor: active ? 'var(--theme-primary)' : undefined,
                     }}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition-all shadow-xs ${
-                      active
+                    className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition-all shadow-xs ${active
                         ? 'text-white shadow-emerald-950/20'
                         : 'bg-emerald-50 text-emerald-900 hover:bg-emerald-100/80 border border-emerald-200/70'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-2.5">
                       <Icon className={`w-4 h-4 ${active ? 'text-white' : 'text-emerald-700'}`} />
                       <span>{item.label}</span>
                     </div>
                     {item.badge && (
-                      <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-md ${
-                        active ? 'bg-white/20 text-white' : 'bg-emerald-200/70 text-emerald-900'
-                      }`}>
+                      <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-md ${active ? 'bg-white/20 text-white' : 'bg-emerald-200/70 text-emerald-900'
+                        }`}>
                         {item.badge}
                       </span>
                     )}
@@ -168,11 +166,10 @@ export default function Sidebar() {
                   style={{
                     backgroundColor: active ? 'var(--theme-primary-dark, #0f172a)' : undefined,
                   }}
-                  className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-colors ${
-                    active
+                  className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-colors ${active
                       ? 'text-white font-semibold shadow-xs'
                       : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-2.5">
                     <Icon className={`w-4 h-4 ${active ? 'text-emerald-300' : 'text-slate-400'}`} />
@@ -217,9 +214,23 @@ export default function Sidebar() {
 
         <button
           onClick={handleLogout}
-          className="w-full text-center py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 hover:text-slate-900 text-[11px] font-semibold transition-colors shadow-2xs"
+          className="w-full flex items-center justify-center gap-2 py-1.5 px-3 rounded-lg border border-slate-200 bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-700 hover:border-rose-200 text-xs font-semibold transition-all shadow-2xs group"
+          title="Sign out of POS Terminal"
         >
-          Sign Out
+          <svg
+            className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-600 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
+          </svg>
+          <span>Log Out</span>
         </button>
       </div>
     </aside>

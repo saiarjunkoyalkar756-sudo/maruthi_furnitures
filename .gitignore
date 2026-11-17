@@ -7,7 +7,7 @@
 /.next/
 /out/
 
-# Environment files & Secrets
+# Environment files
 .env
 .env*.local
 .env.production
@@ -26,6 +26,7 @@ Thumbs.db
 # Local SQLite databases (if any)
 prisma/*.db
 prisma/*.db-journal
+db_backup.json
 
 # TypeScript
 *.tsbuildinfo

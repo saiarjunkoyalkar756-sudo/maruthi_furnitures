@@ -1,15 +1,31 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { IconPlus, IconReceipt } from './Icons'
 import { useTheme, THEMES, ThemeId } from './ThemeProvider'
 
 export default function TopBar() {
   const pathname = usePathname()
+  const router = useRouter()
   const { theme, setTheme, themeInfo } = useTheme()
   const [showThemeMenu, setShowThemeMenu] = useState(false)
+  const [loggingOut, setLoggingOut] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+
+  const handleLogout = async () => {
+    setLoggingOut(true)
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+    } catch (e) {
+      console.error(e)
+    }
+    localStorage.removeItem('maruthi_user')
+    document.cookie = 'maruthi_auth_token=; Max-Age=0; path=/;'
+    document.cookie = 'maruthi_session=; Max-Age=0; path=/;'
+    router.push('/login')
+    router.refresh()
+  }
 
   const [time, setTime] = useState('')
   const [date, setDate] = useState('')
@@ -163,6 +179,30 @@ export default function TopBar() {
             <span>New Sale</span>
           </Link>
         )}
+
+        {/* Quick Log Out Button */}
+        <button
+          type="button"
+          onClick={handleLogout}
+          disabled={loggingOut}
+          title="Sign out / Log Out of Terminal"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-zinc-200 bg-white hover:bg-rose-50 text-xs font-semibold text-zinc-700 hover:text-rose-700 hover:border-rose-200 shadow-2xs transition-all group"
+        >
+          <svg
+            className="w-3.5 h-3.5 text-zinc-400 group-hover:text-rose-600 transition-colors"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
+          </svg>
+          <span className="hidden sm:inline">Log Out</span>
+        </button>
       </div>
     </header>
   )

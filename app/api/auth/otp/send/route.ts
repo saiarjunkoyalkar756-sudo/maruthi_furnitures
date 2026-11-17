@@ -25,7 +25,6 @@ export async function POST(req: NextRequest) {
       smsProvider: result.smsProvider,
       gatewayError: result.error,
       expiresInSeconds: result.expiresInSeconds,
-      devCode: result.smsSent ? undefined : result.devCode, // only in fallback if gateway pending
     })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
