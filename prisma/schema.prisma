@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  name      String   @default("Admin")
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model Product {
+  id             Int        @id @default(autoincrement())
+  name           String
+  category       String     @default("General")
+  description    String     @default("")
+  price          Float      // Selling price (default retail)
+  costPrice      Float      @default(0) // Purchase / wholesale cost
+  wholesalePrice Float      @default(0) // Wholesale price for dealers/bulk
+  retailPrice    Float      @default(0) // Retail price for customer
+  gstRate        Float      @default(0)
+  stock          Int        @default(0)
+  unit           String     @default("piece")
+  supplier       String     @default("")
+  lowStockAt     Int        @default(3)
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  billItems      BillItem[]
+  stockInwards   StockInward[]
+}
+
+model Customer {
+  id        Int               @id @default(autoincrement())
+  name      String
+  phone     String            @default("")
+  email     String            @default("")
+  address   String            @default("")
+  createdAt DateTime          @default(now())
+  bills     Bill[]
+  payments  CustomerPayment[]
+}
+
+model Bill {
+  id            Int        @id @default(autoincrement())
+  billNumber    String     @unique
+  customer      Customer?  @relation(fields: [customerId], references: [id])
+  customerId    Int?
+  customerName  String
+  customerPhone String     @default("")
+  items         BillItem[]
+  subtotal      Float
+  discount      Float      @default(0)
+  discountType  String     @default("flat")
+  cgst          Float      @default(0)
+  sgst          Float      @default(0)
+  total         Float
+  amountPaid    Float      @default(0)
+  paymentMode    String     @default("cash")
+  status         String     @default("paid")
+  notes          String     @default("")
+  pricingType    String     @default("retail") // "retail" or "wholesale"
+  vehicleNumber  String     @default("")
+  driverName     String     @default("")
+  driverPhone    String     @default("")
+  deliveryStatus String     @default("delivered") // "pending", "in_transit", "delivered"
+  createdAt      DateTime   @default(now())
+}
+
+model StockInward {
+  id        Int      @id @default(autoincrement())
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  qty       Int
+  costPrice Float    @default(0)
+  supplier  String   @default("")
+  invoiceNo String   @default("")
+  notes     String   @default("")
+  createdAt DateTime @default(now())
+}
+
+model BillItem {
+  id        Int      @id @default(autoincrement())
+  bill      Bill     @relation(fields: [billId], references: [id])
+  billId    Int
+  product   Product? @relation(fields: [productId], references: [id])
+  productId Int?
+  name      String
+  qty       Int
+  price     Float
+  costPrice Float    @default(0)
+  gstRate   Float    @default(0)
+  total     Float
+}
+
+model CustomerPayment {
+  id         Int      @id @default(autoincrement())
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId Int
+  amount     Float
+  type       String   @default("payment")
+  note       String   @default("")
+  createdAt  DateTime @default(now())
+}
+
+model Expense {
+  id        Int      @id @default(autoincrement())
+  category  String
+  amount    Float
+  note      String   @default("")
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+}
+
+model Offer {
+  id              Int       @id @default(autoincrement())
+  title           String
+  message         String    @db.Text
+  discountPercent Float     @default(0)
+  validTill       DateTime?
+  sentCount       Int       @default(0)
+  createdAt       DateTime  @default(now())
+}
+
+model SecurityLock {
+  id              Int      @id @default(autoincrement())
+  pinCode         String   @default("1234")
+  isLocked        Boolean  @default(false)
+  lastRotatedDate String   @default("")
+  updatedBy       String   @default("system")
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+}
+
+model TelegramConfig {
+  id         Int      @id @default(autoincrement())
+  botToken   String   @default("")
+  chatId     String   @default("")
+  isActive   Boolean  @default(false)
+  lastOffset Int      @default(0)
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now())
+}
