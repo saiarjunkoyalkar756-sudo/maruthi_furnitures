@@ -13,13 +13,13 @@ function LoginView() {
   const [authMethod, setAuthMethod] = useState<'password' | 'otp'>('password')
 
   // Password Login State
-  const [username, setUsername] = useState('Maruthifurnitures001@gmail.com')
-  const [password, setPassword] = useState('Maruthi@123')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(true)
 
   // Mobile SMS OTP State
-  const [phone, setPhone] = useState('+919908267125')
+  const [phone, setPhone] = useState('')
   const [otpDigits, setOtpDigits] = useState<string[]>(['', '', '', '', '', ''])
   const [otpSent, setOtpSent] = useState(false)
   const [otpCooldown, setOtpCooldown] = useState(0)
@@ -40,13 +40,6 @@ function LoginView() {
     }, 1000)
     return () => clearInterval(timer)
   }, [otpCooldown])
-
-  // Quick fill helper for owner
-  const handleQuickFill = () => {
-    setUsername('Maruthifurnitures001@gmail.com')
-    setPassword('Maruthi@123')
-    setErrorMessage('')
-  }
 
   // --- Password Login Handler ---
   const handlePasswordLogin = async (e: React.FormEvent) => {
@@ -97,6 +90,12 @@ function LoginView() {
   const handleSendOtp = async () => {
     setErrorMessage('')
     setSuccessMessage('')
+
+    if (!phone.trim()) {
+      setErrorMessage('Please enter your registered phone number.')
+      return
+    }
+
     setSendingOtp(true)
 
     try {
@@ -104,7 +103,7 @@ function LoginView() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          phone: phone.trim() || '+919908267125',
+          phone: phone.trim(),
           purpose: 'Showroom POS Terminal Login',
         }),
       })
@@ -185,7 +184,7 @@ function LoginView() {
         body: JSON.stringify({
           code,
           purpose: 'Showroom POS Terminal Login',
-          phoneOrUsername: phone.trim() || '+919908267125',
+          phoneOrUsername: phone.trim(),
         }),
       })
 
@@ -410,17 +409,6 @@ function LoginView() {
                   </button>
                 </div>
 
-                {/* Default Owner Quick Fill Chip */}
-                <div className="pt-2">
-                  <button
-                    type="button"
-                    onClick={handleQuickFill}
-                    className="inline-flex items-center gap-1.5 text-[11px] text-slate-400 hover:text-[#5063f0] transition-colors"
-                  >
-                    <span>Store Owner: Fill default credentials</span>
-                  </button>
-                </div>
-
               </form>
             ) : (
               /* MOBILE SMS OTP FORM */
@@ -429,14 +417,14 @@ function LoginView() {
                 {/* Phone Number Input */}
                 <div className="space-y-1">
                   <label className="block text-xs font-bold text-slate-700 tracking-wider">
-                    Mobile Phone (Fast2SMS Cellular OTP)
+                    Mobile Phone (Cellular SMS OTP)
                   </label>
                   <div className="flex gap-2">
                     <input
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+919908267125"
+                      placeholder="Enter registered mobile number"
                       className="flex-1 bg-transparent border-b-2 border-slate-300 focus:border-[#5063f0] py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none transition-colors font-mono"
                     />
                     <button
