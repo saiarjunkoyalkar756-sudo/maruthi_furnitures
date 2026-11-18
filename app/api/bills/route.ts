@@ -113,7 +113,7 @@ export async function POST(req: NextRequest) {
         await prisma.product.update({
           where: { id: parseInt(item.productId) },
           data: { stock: { decrement: parseInt(item.qty) || 1 } },
-        }).catch(() => {})
+        }).catch(() => { })
       }
     }
 

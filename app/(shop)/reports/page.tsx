@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/db'
 import Link from 'next/link'
+import ExportCsvButton from './ExportCsvButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -60,13 +61,16 @@ export default async function ReportsPage() {
             Gross margins, cost of goods sold, category turnover &amp; shop net profit
           </p>
         </div>
-        <Link
-          href="/expenses"
-          className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all self-start"
-        >
-          <span>💰</span>
-          <span>View Expenses</span>
-        </Link>
+        <div className="flex items-center gap-2 self-start sm:self-auto">
+          <ExportCsvButton bills={bills} />
+          <Link
+            href="/expenses"
+            className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all"
+          >
+            <span>💰</span>
+            <span>View Expenses</span>
+          </Link>
+        </div>
       </div>
 
       {/* High-Level P&L Summary */}

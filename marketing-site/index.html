@@ -657,10 +657,16 @@
             </div>
           </div>
 
-          <button onclick="dispatchBespokeInquiry()" class="w-full inline-flex items-center justify-center gap-2.5 bg-ink hover:bg-forest text-white font-medium text-xs py-4 rounded-full transition-all shadow-md">
-            <span>Send Custom Dimension Blueprint via WhatsApp</span>
-            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-          </button>
+          <div class="space-y-2.5">
+            <button onclick="dispatchBespokeInquiry()" class="w-full inline-flex items-center justify-center gap-2.5 bg-ink hover:bg-forest text-white font-medium text-xs py-4 rounded-full transition-all shadow-md">
+              <span>Send Custom Dimension Blueprint via WhatsApp</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="downloadArchitectSpec()" class="w-full inline-flex items-center justify-center gap-2 border border-borderStone bg-white hover:bg-stone-50 text-ink font-semibold text-xs py-3.5 rounded-full transition-all shadow-xs">
+              <i data-lucide="file-text" class="w-3.5 h-3.5 text-clay"></i>
+              <span>Generate Architect Specification Sheet (PDF)</span>
+            </button>
+          </div>
 
         </div>
 
@@ -949,6 +955,94 @@
       
       const url = `https://wa.me/919908267125?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
+    }
+
+    // Architect Spec Sheet PDF Generator
+    function downloadArchitectSpec() {
+      const cat = document.getElementById('customCat').value;
+      const dim = document.getElementById('customDim').value;
+      const finish = document.querySelector('input[name="materialFinish"]:checked')?.value || 'Natural CP Teak';
+      const specCode = 'SPEC-MAR-' + Math.floor(1000 + Math.random() * 9000);
+
+      const win = window.open('', '_blank');
+      if (!win) return;
+
+      win.document.write(`
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Architectural Specification - ${specCode}</title>
+  <style>
+    @page { size: A4 portrait; margin: 15mm; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #121210; background: #fff; margin: 0; padding: 20px; font-size: 13px; line-height: 1.5; }
+    .frame { border: 2px solid #121210; padding: 25px; border-radius: 8px; }
+    .header { border-bottom: 2px solid #121210; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .brand { font-size: 20px; font-weight: 800; letter-spacing: 2px; }
+    .title { font-size: 14px; font-weight: 700; color: #b55a3c; text-transform: uppercase; margin-top: 4px; }
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #f8f6f0; border: 1px solid #e5e1d7; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-size: 12px; }
+    .item strong { display: block; color: #7e7b74; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .standards-box { border: 1px solid #e5e1d7; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-size: 12px; }
+    .footer { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #e5e1d7; padding-top: 15px; font-size: 11px; color: #7e7b74; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="header">
+      <div>
+        <div class="brand">MARUTHI FURNITURES ATELIER</div>
+        <div class="title">Architectural Specification &amp; Dimension Sheet</div>
+        <div style="font-size: 11px; color: #7e7b74; margin-top: 2px;">Bypass Road, Beside RS Metro Gardens, Siddipet &bull; +91 9908267125</div>
+      </div>
+      <div style="text-align: right; font-family: monospace;">
+        <div style="font-size: 10px; color: #7e7b74;">SPECIFICATION REF</div>
+        <div style="font-size: 15px; font-weight: bold;">${specCode}</div>
+      </div>
+    </div>
+
+    <div class="spec-grid">
+      <div class="item">
+        <strong>Architectural Piece / Category</strong>
+        <span style="font-size: 14px; font-weight: bold;">${cat}</span>
+      </div>
+      <div class="item">
+        <strong>Target Dimensions</strong>
+        <span style="font-size: 14px; font-weight: bold; color: #263830;">${dim}</span>
+      </div>
+      <div class="item">
+        <strong>Specified Material &amp; Provenance</strong>
+        <span>${finish} &bull; Kiln-Seasoned CP Teak / 18G Steel</span>
+      </div>
+      <div class="item">
+        <strong>Joinery &amp; Structural Standard</strong>
+        <span>Hand-Mortised Joints &bull; ±1.5mm Laser Tolerance</span>
+      </div>
+    </div>
+
+    <div class="standards-box">
+      <strong style="display: block; font-size: 11px; text-transform: uppercase; color: #121210; margin-bottom: 6px;">Quality Certifications &amp; Warranty:</strong>
+      &bull; <strong>100% Solid Seasoned Timber:</strong> Zero particleboard, zero hollow veneer cores.<br/>
+      &bull; <strong>10-Year Anti-Termite Guarantee:</strong> Natural organic teak silica oil resistance.<br/>
+      &bull; <strong>Cold-Rolled Steel:</strong> 7-tank anti-corrosion chemical wash with electro-deposition coating.<br/>
+      &bull; <strong>Orthopedic Spinal Alignment:</strong> Multi-zone high-density rebonded foam certified for vertebrae decompression.
+    </div>
+
+    <div class="footer">
+      <div>
+        Prepared for Architectural &amp; Interior Design Blueprint Integration.<br/>
+        Showroom Atelier: Bypass Road, Siddipet, Telangana &bull; +91 9908267125
+      </div>
+      <div style="text-align: right; font-weight: bold; color: #121210;">
+        MARUTHI FURNITURES &bull; MASTER ATELIER
+      </div>
+    </div>
+  </div>
+  <script>window.onload = function() { setTimeout(function() { window.print(); }, 250); }<\/script>
+</body>
+</html>
+      `);
+      win.document.close();
     }
   </script>
 

@@ -700,6 +700,426 @@ export default function BillDetailPage() {
     window.open(targetUrl, '_blank')
   }
 
+  // 4. Official 10-Year Warranty & Provenance Certificate
+  const printWarranty = () => {
+    if (!bill) return
+    const win = window.open('', '_blank')
+    if (!win) return
+
+    win.document.write(`
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Warranty Certificate - ${bill.billNumber}</title>
+  <style>
+    @page { size: A4 landscape; margin: 10mm; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Times New Roman', Georgia, serif;
+      background: #faf8f5;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .cert-frame {
+      border: 8px double #c59b27;
+      padding: 30px 40px;
+      background: #ffffff;
+      width: 100%;
+      max-width: 1050px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .cert-inner-border {
+      border: 1.5px solid #005a36;
+      padding: 25px 35px;
+      position: relative;
+    }
+    .cert-header {
+      text-align: center;
+      border-bottom: 2px solid #c59b27;
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+    .cert-brand {
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #005a36;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .cert-sub {
+      font-size: 11px;
+      color: #666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .cert-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #b8860b;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin: 12px 0 6px 0;
+    }
+    .cert-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 16px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+      background: #fcfbf9;
+      border: 1px solid #e8e4dc;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 12px;
+    }
+    .meta-item strong {
+      display: block;
+      color: #005a36;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 11.5px;
+    }
+    th {
+      background: #005a36;
+      color: #ffffff;
+      padding: 6px 10px;
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    td {
+      padding: 6px 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: end;
+      margin-top: 24px;
+      padding-top: 10px;
+    }
+    .seal-box {
+      text-align: center;
+    }
+    .gold-seal {
+      display: inline-block;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffe082 0%, #c59b27 70%, #996515 100%);
+      color: #3e2723;
+      font-weight: bold;
+      font-size: 9px;
+      text-transform: uppercase;
+      line-height: 1.1;
+      padding-top: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      border: 2px dashed #ffffff;
+    }
+    .sig-box {
+      text-align: right;
+    }
+    .sig-line {
+      border-top: 1px solid #333;
+      padding-top: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      color: #005a36;
+    }
+  </style>
+</head>
+<body>
+  <div class="cert-frame">
+    <div class="cert-inner-border">
+      <div class="cert-header">
+        <h1 class="cert-brand">MARUTHI FURNITURES &amp; MATTRESSES</h1>
+        <div class="cert-sub">Bypass Road, Beside RS Metro Gardens, Siddipet, Telangana &bull; +91 9908267125</div>
+        <div class="cert-title">Certificate of Provenance &amp; Warranty</div>
+      </div>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <strong>Certificate Number</strong>
+          <span>WARR-${bill.billNumber}</span>
+        </div>
+        <div class="meta-item">
+          <strong>Issued To Customer</strong>
+          <span>${bill.customerName} (${bill.customerPhone || 'Counter'})</span>
+        </div>
+        <div class="meta-item">
+          <strong>Date of Authenticity</strong>
+          <span>${new Date(bill.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
+        </div>
+      </div>
+
+      <div class="cert-body">
+        This document formally certifies that the furniture items listed below have been inspected, seasoned, and quality-tested according to the highest industry standards by <strong>Maruthi Furnitures &amp; Mattresses</strong>.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Article / Specification</th>
+            <th>Qty</th>
+            <th>Provenance &amp; Material Standard</th>
+            <th>Warranty Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${bill.items.map(item => `
+            <tr>
+              <td><strong>${item.name}</strong></td>
+              <td>${item.qty}</td>
+              <td>Seasoned Grade-A Central Province Timber / Cold-Rolled 18G Steel / Ortho Core</td>
+              <td><strong style="color: #005a36;">5 to 10 Years Guarantee</strong></td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+
+      <div class="footer-grid">
+        <div>
+          <div style="font-size: 10px; color: #666; line-height: 1.4;">
+            &bull; Anti-termite &amp; structural joinery guarantee.<br/>
+            &bull; 7-zone rebonded spine contour retention.<br/>
+            &bull; Valid with Invoice Ref: <strong>${bill.billNumber}</strong>
+          </div>
+        </div>
+        <div class="seal-box">
+          <div class="gold-seal">
+            OFFICIAL<br>QUALITY<br>SEAL
+          </div>
+        </div>
+        <div class="sig-box">
+          <div style="height: 35px;"></div>
+          <div class="sig-line">ALAKANTI SAI NITHIN</div>
+          <div style="font-size: 10px; color: #777;">Managing Director &bull; Maruthi Furnitures</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>window.onload = function() { setTimeout(function() { window.print(); }, 250); }</script>
+</body>
+</html>
+    `)
+    win.document.close()
+  }
+
+  // 5. Official Goods Dispatch & Delivery Gate Pass
+  const printDeliveryChallan = () => {
+    if (!bill) return
+    const win = window.open('', '_blank')
+    if (!win) return
+    const balance = Math.max(0, bill.total - (bill.amountPaid || 0))
+
+    win.document.write(`
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Delivery Challan - ${bill.billNumber}</title>
+  <style>
+    @page { size: A4 portrait; margin: 12mm 15mm; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: #0f172a;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      font-size: 13px;
+    }
+    .challan-box {
+      border: 2px solid #0f172a;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .header {
+      background: #0f172a;
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 16px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .info-card {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      padding: 12px;
+      border-radius: 6px;
+    }
+    .label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    th {
+      background: #334155;
+      color: #fff;
+      padding: 10px 14px;
+      font-size: 11px;
+      text-transform: uppercase;
+      text-align: left;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 13px;
+    }
+    .cod-banner {
+      margin: 16px 20px;
+      padding: 14px 18px;
+      border: 2px dashed ${balance > 0 ? '#dc2626' : '#16a34a'};
+      background: ${balance > 0 ? '#fef2f2' : '#f0fdf4'};
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cod-amount {
+      font-size: 20px;
+      font-weight: 800;
+      color: ${balance > 0 ? '#dc2626' : '#16a34a'};
+      font-family: monospace;
+    }
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      padding: 30px 20px 20px 20px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      font-size: 11px;
+    }
+    .sig-field {
+      border-top: 1px solid #64748b;
+      padding-top: 6px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="challan-box">
+    <div class="header">
+      <div>
+        <div class="title">GOODS DISPATCH CHALLAN &amp; GATE PASS</div>
+        <div style="font-size: 11px; color: #94a3b8; margin-top: 2px;">MARUTHI FURNITURES &bull; SIDDIPET &bull; +91 9908267125</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 11px; color: #94a3b8;">ORDER / INVOICE REF</div>
+        <div style="font-size: 16px; font-weight: bold; font-family: monospace;">${bill.billNumber}</div>
+      </div>
+    </div>
+
+    <div class="meta-row">
+      <div class="info-card">
+        <div class="label">Customer Delivery Destination</div>
+        <div style="font-size: 15px; font-weight: bold;">${bill.customerName}</div>
+        <div style="font-size: 12px; color: #475569; margin-top: 2px;">Phone: <strong>${bill.customerPhone || 'Counter Contact'}</strong></div>
+      </div>
+      <div class="info-card">
+        <div class="label">Transport &amp; Vehicle Verification</div>
+        <div style="font-size: 12px; color: #475569;">Vehicle / Auto No: _________________________</div>
+        <div style="font-size: 12px; color: #475569; margin-top: 4px;">Driver Name &amp; Phone: ______________________</div>
+      </div>
+    </div>
+
+    <div style="padding: 0 20px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Item Description</th>
+            <th style="text-align: center; width: 80px;">Qty</th>
+            <th>Inspection &amp; Verification</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${bill.items.map(item => `
+            <tr>
+              <td><strong>${item.name}</strong></td>
+              <td style="text-align: center; font-weight: bold;">${item.qty}</td>
+              <td style="color: #64748b;">[ &nbsp; ] No Scratches &bull; Sealed Condition &bull; Inspected</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cod-banner">
+      <div>
+        <div style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #475569;">Cash on Delivery (COD) To Collect:</div>
+        <div style="font-size: 12px; color: #64748b;">Driver must collect full balance before unloading goods.</div>
+      </div>
+      <div class="cod-amount">
+        ${balance > 0 ? `COLLECT: ₹${balance.toLocaleString('en-IN')}` : 'PAID IN FULL (₹0 DUE)'}
+      </div>
+    </div>
+
+    <div class="sig-grid">
+      <div>
+        <div style="height: 40px;"></div>
+        <div class="sig-field">Warehouse Dispatcher</div>
+      </div>
+      <div>
+        <div style="height: 40px;"></div>
+        <div class="sig-field">Delivery Driver Sign</div>
+      </div>
+      <div>
+        <div style="height: 40px;"></div>
+        <div class="sig-field">Customer Receiver Sign &amp; Date</div>
+      </div>
+    </div>
+  </div>
+
+  <script>window.onload = function() { setTimeout(function() { window.print(); }, 250); }</script>
+</body>
+</html>
+    `)
+    win.document.close()
+  }
+
   if (loading) return <div className="p-8 text-zinc-400 text-sm">Loading invoice...</div>
   if (!bill) return <div className="p-8 text-rose-600 text-sm">Invoice not found</div>
 
@@ -741,15 +1161,23 @@ export default function BillDetailPage() {
             onClick={handleSendWhatsApp}
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold transition-colors shadow-2xs"
           >
-            <span>WhatsApp</span>
+            <span>📱 WhatsApp Bill</span>
           </button>
 
-          {/* 80mm Thermal */}
+          {/* 10-Yr Warranty Certificate */}
           <button
-            onClick={printThermal}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-200 bg-white hover:bg-zinc-50 text-xs font-semibold text-zinc-700 transition-colors shadow-2xs"
+            onClick={printWarranty}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white text-xs font-semibold transition-all shadow-xs"
           >
-            <span>Thermal Slip</span>
+            <span>🏅 10-Yr Warranty</span>
+          </button>
+
+          {/* Delivery Challan */}
+          <button
+            onClick={printDeliveryChallan}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold transition-colors shadow-2xs"
+          >
+            <span>🚚 Delivery Pass</span>
           </button>
 
           {/* A4 Print */}
@@ -759,6 +1187,14 @@ export default function BillDetailPage() {
           >
             <IconPrinter className="w-3.5 h-3.5" />
             <span>A4 Invoice</span>
+          </button>
+
+          {/* 80mm Thermal */}
+          <button
+            onClick={printThermal}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-200 bg-white hover:bg-zinc-50 text-xs font-semibold text-zinc-700 transition-colors shadow-2xs"
+          >
+            <span>Thermal Slip</span>
           </button>
 
           {/* Edit / Payment */}

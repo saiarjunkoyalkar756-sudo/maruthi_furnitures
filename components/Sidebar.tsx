@@ -35,6 +35,7 @@ const navGroups: NavGroup[] = [
       { href: '/dashboard', label: 'Dashboard', icon: IconDashboard },
       { href: '/billing/new', label: 'Point of Sale (POS)', icon: IconReceipt, isHighlight: true, badge: 'Quick' },
       { href: '/billing', label: 'Invoice Ledger', icon: IconReceipt },
+      { href: '/quotations', label: 'Estimates & Quotes', icon: IconReceipt, badge: 'Deals' },
     ],
   },
   {
