@@ -12,6 +12,11 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: 'Maruthi Furnitures & Mattresses — POS & ERP',
   description: 'Retail POS and Inventory Management for Maruthi Furnitures, Siddipet',
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/app.ico',
+    apple: '/logo.jpg',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
