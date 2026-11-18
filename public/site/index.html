@@ -1,14 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maruthi Furnitures & Mattresses — Contemporary Living & Crafted Sleep</title>
-  <meta name="description" content="An architectural perspective on heritage craftsmanship. Solid CP Teak Wood, bespoke luxury sofas, doctor-recommended orthopedic mattresses and precision-fabricated steel storage. Siddipet Flagship Showroom." />
+  <title>Maruthi Furnitures & Mattresses — Siddipet Flagship Showroom</title>
+  <meta name="description" content="Explore Maruthi Furnitures' 2026 Collection: Rebonded Eurotop Mattresses, Seasoned Teak Wood Cots, Heavy 18-Gauge Steel Almirahs, Double Door Dressing Tables, and Cool Xpert Coolers. Beside RS Metro Gardens, Siddipet." />
   
   <link rel="icon" href="./images/maruthi-logo.png" type="image/png" />
 
-  <!-- Fonts: Plus Jakarta Sans & Playfair Display / Syne -->
+  <!-- Ultra-Refined 4K Fonts: Syne & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
               700: '#3A362F',
               800: '#26241F',
               900: '#181714',
-              950: '#0F0E0C',
+              950: '#0E0D0B',
             },
             accent: {
               clay: '#C86D51',
@@ -48,9 +48,9 @@
               ochre: '#D97706',
             }
           },
-          letterSpacing: {
-            'tightest': '-0.04em',
-            'widest-xl': '0.25em',
+          boxShadow: {
+            '4k': '0 30px 70px -15px rgba(24, 23, 20, 0.12)',
+            'pill': '0 12px 35px -5px rgba(24, 23, 20, 0.08)',
           }
         }
       }
@@ -58,53 +58,50 @@
   </script>
 
   <style>
-    /* Muuto Architectural Details */
+    /* Muuto Architectural Precision Styling */
     ::selection {
       background: #2A3C34;
       color: #FAF9F6;
     }
-    .text-balance {
-      text-wrap: balance;
-    }
     .pill-blur {
-      background: rgba(250, 249, 246, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(250, 249, 246, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
     .hotspot {
       position: absolute;
       transform: translate(-50%, -50%);
       cursor: pointer;
+      z-index: 20;
     }
     .hotspot-dot {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       background: #FFFFFF;
       border-radius: 9999px;
-      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4), 0 8px 20px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5), 0 8px 25px rgba(0, 0, 0, 0.35);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hotspot:hover .hotspot-dot {
-      transform: scale(1.3);
+      transform: scale(1.35);
       background: #2A3C34;
-      box-shadow: 0 0 0 6px rgba(42, 60, 52, 0.3), 0 12px 25px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 0 6px rgba(42, 60, 52, 0.35), 0 12px 30px rgba(0, 0, 0, 0.4);
     }
     .hotspot-card {
       position: absolute;
-      bottom: calc(100% + 12px);
+      bottom: calc(100% + 14px);
       left: 50%;
       transform: translateX(-50%) translateY(8px);
       opacity: 0;
       pointer-events: none;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      width: 220px;
+      width: 240px;
     }
     .hotspot:hover .hotspot-card {
       opacity: 1;
       pointer-events: auto;
       transform: translateX(-50%) translateY(0);
     }
-    /* Hide scrollbars for clean horizontal slider */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -112,159 +109,188 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    .pulse-glow {
+      animation: pulseGlow 3.5s infinite ease-in-out;
+    }
   </style>
 </head>
-<body class="bg-stone-50 text-stone-900 antialiased font-sans selection:bg-accent-forest selection:text-white">
+<body class="bg-stone-50 text-stone-900 antialiased font-sans selection:bg-accent-forest selection:text-white min-h-screen">
 
-  <!-- TOP MINIMAL TICKER -->
-  <div class="bg-stone-950 text-stone-300 text-[11px] font-medium tracking-wider uppercase py-2 px-4 border-b border-stone-800">
+  <!-- TOP MINIMAL MARQUEE -->
+  <div class="bg-stone-950 text-stone-300 text-[11px] font-medium tracking-wider uppercase py-2.5 px-4 border-b border-stone-800">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         <span class="tracking-widest">Siddipet Flagship Showroom • Beside RS Metro Gardens</span>
+        <span class="hidden md:inline text-stone-500">•</span>
+        <span class="hidden md:inline text-amber-300 font-semibold">Festive Special: Up to 25% Off on Select Living & Bedroom Sets</span>
       </div>
-      <div class="hidden sm:flex items-center gap-6 text-stone-400">
-        <span>Open 7 Days (9:30 AM – 9:30 PM)</span>
-        <a href="tel:+919908267125" class="text-stone-200 hover:text-white transition-colors">+91 9908267125</a>
+      <div class="hidden sm:flex items-center gap-6 text-stone-400 text-xs">
+        <span>Mon–Sun: 9:30 AM – 9:30 PM</span>
+        <a href="tel:+919908267125" class="text-stone-200 hover:text-white font-bold transition-colors">+91 9908267125</a>
       </div>
     </div>
   </div>
 
-  <!-- FLOATING SCANDINAVIAN PILL NAVBAR -->
+  <!-- FLOATING PILL HEADER -->
   <div class="sticky top-4 z-50 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <header class="pill-blur border border-stone-300/60 rounded-full px-5 py-3 sm:px-7 sm:py-3.5 shadow-[0_10px_35px_rgba(24,23,20,0.06)] flex items-center justify-between transition-all">
+    <header class="pill-blur border border-stone-300/70 rounded-full px-5 py-3 sm:px-7 sm:py-3.5 shadow-pill flex items-center justify-between transition-all">
       
       <!-- LOGO -->
       <a href="#home" class="flex items-center gap-3 group">
-        <img src="./images/maruthi-logo.png" alt="Maruthi Furnitures" class="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105" />
+        <img src="./images/maruthi-logo.png" alt="Maruthi Furnitures" class="h-9 w-auto object-contain transition-transform group-hover:scale-105" />
         <div class="flex flex-col">
           <span class="font-display font-extrabold tracking-tight text-sm sm:text-base text-stone-950 leading-none">MARUTHI</span>
-          <span class="text-[9px] uppercase tracking-[0.25em] font-semibold text-stone-500 mt-0.5">Atelier & Home</span>
+          <span class="text-[9px] uppercase tracking-[0.25em] font-semibold text-stone-500 mt-0.5">Furnitures & Mattresses</span>
         </div>
       </a>
 
-      <!-- EDITORIAL NAV LINKS -->
+      <!-- NAV LINKS -->
       <nav class="hidden md:flex items-center gap-8 text-[13px] font-semibold text-stone-700 tracking-wide">
-        <a href="#featured" class="hover:text-stone-950 transition-colors">Catalog</a>
-        <a href="#spaces" class="hover:text-stone-950 transition-colors">Living</a>
-        <a href="#craftsmanship" class="hover:text-stone-950 transition-colors">Materials</a>
-        <a href="#showroom" class="hover:text-stone-950 transition-colors">Showroom</a>
-        <a href="#concierge" class="hover:text-stone-950 transition-colors">Concierge</a>
+        <a href="#catalog" class="hover:text-stone-950 transition-colors">All Products</a>
+        <a href="#featured" class="hover:text-stone-950 transition-colors">Bestsellers</a>
+        <a href="#materials" class="hover:text-stone-950 transition-colors">Craftsmanship</a>
+        <a href="#showroom" class="hover:text-stone-950 transition-colors">Showroom Tour</a>
+        <a href="#contact" class="hover:text-stone-950 transition-colors">Location</a>
       </nav>
 
-      <!-- RIGHT ACTIONS -->
+      <!-- ACTIONS -->
       <div class="flex items-center gap-3">
-        <!-- WhatsApp Concierge Pill -->
-        <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20would%20like%20to%20inquire%20about%20your%20furniture%20collections." 
+        <!-- Live WhatsApp CTA -->
+        <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20am%20exploring%20your%202026%20catalog%20and%20want%20to%20inquire%20about%20prices." 
            target="_blank" 
            class="inline-flex items-center gap-2 bg-stone-950 hover:bg-accent-forest text-white text-xs font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md">
           <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
-          <span>Inquire on WhatsApp</span>
+          <span>WhatsApp Inquiry</span>
         </a>
 
-        <!-- Staff POS Link -->
+        <!-- Staff POS ERP Portal -->
         <a href="https://16.179.197.236.sslip.io" 
            target="_blank" 
-           title="POS Billing Terminal"
-           class="hidden xl:inline-flex items-center justify-center w-8 h-8 rounded-full border border-stone-300/80 text-stone-500 hover:text-stone-950 hover:border-stone-950 transition-all">
-          <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+           title="POS Billing Terminal (Authorized Staff)"
+           class="hidden xl:inline-flex items-center justify-center w-9 h-9 rounded-full border border-stone-300/80 text-stone-500 hover:text-stone-950 hover:border-stone-950 transition-all">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
         </a>
       </div>
 
     </header>
   </div>
 
-  <!-- HERO SECTION (ODAMA / MUUTO STYLE EDITORIAL) -->
-  <section id="home" class="pt-12 sm:pt-16 pb-20 sm:pb-28">
+  <!-- HERO SECTION WITH REAL MARUTHI PRODUCT HOTSPOTS -->
+  <section id="home" class="pt-10 sm:pt-16 pb-20 sm:pb-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- EDITORIAL TITLE BLOCK -->
       <div class="grid lg:grid-cols-12 gap-8 items-end mb-12 sm:mb-16">
         <div class="lg:col-span-8">
           <div class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-accent-clay mb-4">
-            <span>Volume 2026</span>
-            <span class="w-1 h-1 rounded-full bg-stone-400"></span>
-            <span>Contemporary Living In Siddipet</span>
+            <span>Showroom Flagship</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+            <span>2026 Ready Catalog • Siddipet</span>
           </div>
-          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-stone-950 leading-[1.05] text-balance">
-            Quiet luxury for everyday spaces.
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-stone-950 leading-[1.04]">
+            Sculpted for life.<br>
+            Engineered for sleep.
           </h1>
         </div>
         
         <div class="lg:col-span-4 lg:pl-6">
           <p class="text-sm sm:text-base text-stone-600 leading-relaxed font-normal mb-6">
-            Bespoke living suites, Grade-A seasoned CP Teak Wood cots, orthopedic recovery mattresses, and heavy-gauge architectural storage. Sourced directly from artisans with zero showroom retail markups.
+            Direct factory craftsmanship for your home. Explore our real showroom inventory: 32D Jacquard and Rebonded Eurotop Mattresses, 18-gauge cold-rolled steel wardrobes, double door dressing units, and heavy-duty summer air coolers.
           </p>
           <div class="flex items-center gap-6 text-xs font-semibold text-stone-900 border-t border-stone-200 pt-4">
             <div>
-              <span class="block text-stone-400 text-[10px] uppercase tracking-wider">Provenance</span>
-              Solid CP Teak & CR Steel
+              <span class="block text-stone-400 text-[10px] uppercase tracking-wider font-bold">Showroom Stock</span>
+              30+ Active Models
             </div>
             <div class="h-6 w-px bg-stone-200"></div>
             <div>
-              <span class="block text-stone-400 text-[10px] uppercase tracking-wider">Logistics</span>
-              White-Glove In-Home Setup
+              <span class="block text-stone-400 text-[10px] uppercase tracking-wider font-bold">Delivery Terms</span>
+              Free Siddipet Doorstep Setup
             </div>
           </div>
         </div>
       </div>
 
-      <!-- MAIN HERO SHOWCASE WITH INTERACTIVE HOTSPOTS -->
-      <div class="relative rounded-3xl sm:rounded-[36px] overflow-hidden bg-stone-200 border border-stone-300 shadow-2xl group">
-        <!-- High-End Scandinavian Living Room Editorial Visual -->
-        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=2000&q=85" 
-             alt="Maruthi Luxury Living Showcase" 
-             class="w-full h-[450px] sm:h-[620px] lg:h-[700px] object-cover group-hover:scale-[1.02] transition-transform duration-1000 ease-out" />
+      <!-- MAIN 4K HERO SHOWCASE WITH REAL PRODUCT HOTSPOTS -->
+      <div class="relative rounded-3xl sm:rounded-[36px] overflow-hidden bg-stone-200 border border-stone-300 shadow-4k group">
+        <!-- 4K High-End Interior Showcase -->
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=2200&q=90" 
+             alt="Maruthi Luxury Showroom Showcase" 
+             class="w-full h-[460px] sm:h-[620px] lg:h-[700px] object-cover group-hover:scale-[1.015] transition-transform duration-1000 ease-out" />
         
-        <!-- Subtle Vignette & Gradient -->
-        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/10 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/15 to-transparent pointer-events-none"></div>
 
-        <!-- HOTSPOT 1: SOFA HOTSPOT -->
-        <div class="hotspot" style="top: 68%; left: 45%;">
+        <!-- HOTSPOT 1: REAL MARUTHI PRODUCT (MATTRESS 72x36x6" R/B EUROTOP) -->
+        <div class="hotspot" style="top: 72%; left: 38%;">
           <div class="hotspot-dot"></div>
           <div class="hotspot-card bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-stone-100 text-left">
-            <span class="text-[9px] uppercase tracking-wider font-extrabold text-accent-clay block">Living Suite</span>
-            <div class="font-display font-bold text-sm text-stone-950 mt-0.5">Bespoke 3+1+1 Lounge Sofa</div>
-            <div class="text-xs text-stone-500 mt-1">40-Density HR Foam • Stain-Proof Velvet</div>
+            <span class="text-[9px] uppercase tracking-wider font-extrabold text-accent-clay block">Orthopedic Mattress</span>
+            <div class="font-display font-bold text-sm text-stone-950 mt-0.5">72x36x6" R/B Eurotop</div>
+            <div class="text-xs text-stone-500 mt-0.5">Rebonded Two-Top Core • 7-Zone Support</div>
             <div class="mt-2.5 pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
-              <span class="font-bold text-stone-900">Custom Built</span>
-              <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20am%20inquiring%20about%20the%20Bespoke%20Lounge%20Sofa." target="_blank" class="text-accent-forest font-bold hover:underline flex items-center gap-0.5">Inquire <i data-lucide="arrow-up-right" class="w-3 h-3"></i></a>
+              <span class="font-bold text-stone-950">₹14,500</span>
+              <button onclick="quickInquire('Mattress 72x36x6 R/B Eurotop', '14500', 'Mattress')" class="text-accent-forest font-bold hover:underline flex items-center gap-0.5">
+                Inquire <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- HOTSPOT 2: WOOD FINISH HOTSPOT -->
-        <div class="hotspot" style="top: 40%; left: 78%;">
+        <!-- HOTSPOT 2: REAL MARUTHI PRODUCT (DOUBLE DOOR DRESSING TABLE) -->
+        <div class="hotspot" style="top: 38%; left: 75%;">
           <div class="hotspot-dot"></div>
           <div class="hotspot-card bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-stone-100 text-left">
-            <span class="text-[9px] uppercase tracking-wider font-extrabold text-accent-forest block">Woodcraft</span>
-            <div class="font-display font-bold text-sm text-stone-950 mt-0.5">Solid Teak Wood Joinery</div>
-            <div class="text-xs text-stone-500 mt-1">Natural Grain • Termite-Treated</div>
+            <span class="text-[9px] uppercase tracking-wider font-extrabold text-accent-forest block">Dressing Unit</span>
+            <div class="font-display font-bold text-sm text-stone-950 mt-0.5">2½ Ft Polish Double Door</div>
+            <div class="text-xs text-stone-500 mt-0.5">Full-Length Mirror • Lower Concealed Shelves</div>
             <div class="mt-2.5 pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
-              <span class="font-bold text-stone-900">10-Yr Frame</span>
-              <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20tell%20me%20about%20your%20Teak%20Wood%20Cots." target="_blank" class="text-accent-forest font-bold hover:underline flex items-center gap-0.5">Inquire <i data-lucide="arrow-up-right" class="w-3 h-3"></i></a>
+              <span class="font-bold text-stone-950">₹6,500</span>
+              <button onclick="quickInquire('2.5 Ft Polish Double Door Dressing Table', '6500', 'Dressing Table')" class="text-accent-forest font-bold hover:underline flex items-center gap-0.5">
+                Inquire <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- HERO OVERLAY FOOTER DETAILS -->
+        <!-- HOTSPOT 3: REAL MARUTHI PRODUCT (P.C 48 STEEL ALMIRAH) -->
+        <div class="hotspot" style="top: 48%; left: 16%;">
+          <div class="hotspot-dot"></div>
+          <div class="hotspot-card bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-stone-100 text-left">
+            <span class="text-[9px] uppercase tracking-wider font-extrabold text-stone-600 block">Heavy Storage</span>
+            <div class="font-display font-bold text-sm text-stone-950 mt-0.5">P.C 48 Almirah (with Mirror)</div>
+            <div class="text-xs text-stone-500 mt-0.5">18-Gauge Steel • Triveni Safety Locker</div>
+            <div class="mt-2.5 pt-2 border-t border-stone-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-stone-950">₹18,500</span>
+              <button onclick="quickInquire('P.C 48 Almirah with Mirror', '18500', 'Almirah')" class="text-accent-forest font-bold hover:underline flex items-center gap-0.5">
+                Inquire <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OVERLAY DETAILS -->
         <div class="absolute bottom-6 sm:bottom-10 left-6 sm:left-10 right-6 sm:right-10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 text-white">
           <div class="max-w-md">
             <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-accent-sand block mb-1">
-              Architecture & Harmony
+              Direct Manufacturer Pricing
             </span>
             <p class="font-display text-lg sm:text-2xl font-bold leading-tight">
-              Designed around how human beings sit, sleep, and gather.
+              Honest materials. Transparent wholesale rates.
             </p>
           </div>
 
           <div class="flex items-center gap-3">
-            <a href="#featured" class="bg-white hover:bg-stone-100 text-stone-950 font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all shadow-lg flex items-center gap-2">
-              <span>View 2026 Collection</span>
+            <a href="#catalog" class="bg-white hover:bg-stone-100 text-stone-950 font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all shadow-lg flex items-center gap-2">
+              <span>Browse Real Inventory</span>
               <i data-lucide="arrow-down" class="w-4 h-4"></i>
             </a>
-            <a href="#showroom" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all">
-              <span>Visit Showroom</span>
+            <a href="#showroom" class="bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/30 font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all">
+              <span>Showroom Map</span>
             </a>
           </div>
         </div>
@@ -274,291 +300,104 @@
     </div>
   </section>
 
-  <!-- QUICK ARCHITECTURAL STATS (4-COLUMN CLEAN STRIP) -->
-  <section class="border-y border-stone-200/90 py-10 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        
-        <div class="space-y-1">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">01 / Provenance</span>
-          <div class="font-display font-bold text-2xl sm:text-3xl text-stone-950">10+ Years</div>
-          <p class="text-xs text-stone-500">Established flagship showroom serving Siddipet & surrounding mandals.</p>
-        </div>
-
-        <div class="space-y-1">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">02 / Integrity</span>
-          <div class="font-display font-bold text-2xl sm:text-3xl text-stone-950">100% Solid</div>
-          <p class="text-xs text-stone-500">Zero engineered cheap fillers in our master solid teak pieces.</p>
-        </div>
-
-        <div class="space-y-1">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">03 / Satisfaction</span>
-          <div class="font-display font-bold text-2xl sm:text-3xl text-stone-950">4.9 ★ Rating</div>
-          <p class="text-xs text-stone-500">Verified by 5,000+ local families, doctors, and businesses.</p>
-        </div>
-
-        <div class="space-y-1">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">04 / White-Glove</span>
-          <div class="font-display font-bold text-2xl sm:text-3xl text-stone-950">Free Delivery</div>
-          <p class="text-xs text-stone-500">Carefully transported, placed in your bedroom, and assembled gratis.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED PRODUCT CURATION (THE ODAMA/MUUTO PRODUCT GRID) -->
-  <section id="featured" class="py-24">
+  <!-- DYNAMIC LIVE PRODUCT CATALOG (REAL MARUTHI DATABASE) -->
+  <section id="catalog" class="py-20 bg-stone-100 border-t border-stone-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- SECTION HEADER -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <!-- HEADER & CONTROLS -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
         <div>
-          <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-accent-clay block mb-2">Curated Catalog</span>
+          <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-accent-clay block mb-2">Live Showroom Inventory</span>
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-950">
-            Selected Pieces for Everyday Living
+            Showroom Pieces & Pricing
           </h2>
+          <p class="text-xs sm:text-sm text-stone-500 mt-2">
+            Browse our actual live showroom stock in Siddipet with transparent prices. Click any item to book or inquire via WhatsApp.
+          </p>
         </div>
 
-        <!-- MINIMAL TABS -->
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2" id="filterBar">
-          <button onclick="setFilter('all')" class="filter-pill active bg-stone-950 text-white text-xs font-semibold px-4 py-2 rounded-full transition-all">All</button>
-          <button onclick="setFilter('mattress')" class="filter-pill bg-stone-200/80 hover:bg-stone-300/80 text-stone-700 text-xs font-semibold px-4 py-2 rounded-full transition-all">Mattresses</button>
-          <button onclick="setFilter('dressing')" class="filter-pill bg-stone-200/80 hover:bg-stone-300/80 text-stone-700 text-xs font-semibold px-4 py-2 rounded-full transition-all">Dressing Tables</button>
-          <button onclick="setFilter('storage')" class="filter-pill bg-stone-200/80 hover:bg-stone-300/80 text-stone-700 text-xs font-semibold px-4 py-2 rounded-full transition-all">Steel Almirahs</button>
-          <button onclick="setFilter('cooling')" class="filter-pill bg-stone-200/80 hover:bg-stone-300/80 text-stone-700 text-xs font-semibold px-4 py-2 rounded-full transition-all">Air Coolers</button>
-          <button onclick="setFilter('seating')" class="filter-pill bg-stone-200/80 hover:bg-stone-300/80 text-stone-700 text-xs font-semibold px-4 py-2 rounded-full transition-all">Cots & Sofas</button>
+        <!-- SEARCH INPUT -->
+        <div class="w-full lg:w-80 relative">
+          <i data-lucide="search" class="w-4 h-4 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="Search mattresses, almirahs, coolers..." 
+            oninput="handleSearch(this.value)"
+            class="w-full bg-white border border-stone-300 rounded-full pl-11 pr-4 py-2.5 text-xs font-medium text-stone-900 focus:outline-none focus:ring-2 focus:ring-stone-950 transition-all placeholder:text-stone-400 shadow-sm"
+          />
         </div>
       </div>
 
-      <!-- CARDS GRID -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="catalogGrid">
-        
-        <!-- CARD 1: EUROTOP MATTRESS -->
-        <div class="catalog-item group flex flex-col" data-category="mattress">
-          <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone-200 border border-stone-200/80 mb-5">
-            <img src="./images/mattresses.jpg" alt="Orthopedic Rebonded Eurotop Mattress" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute top-4 left-4">
-              <span class="bg-white/90 backdrop-blur-md text-stone-900 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
-                Doctor Recommended
-              </span>
-            </div>
-            <!-- Quick WhatsApp Button On Hover -->
-            <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20am%20inquiring%20about%20the%20Orthopedic%20Rebonded%20Eurotop%20Mattress." 
-               target="_blank" 
-               class="absolute bottom-4 right-4 bg-stone-950 hover:bg-accent-forest text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl translate-y-2 group-hover:translate-y-0">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
-            </a>
-          </div>
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Sleep Architecture</span>
-              <h3 class="font-display font-bold text-lg text-stone-950 mt-0.5 group-hover:text-accent-forest transition-colors">Orthopedic Rebonded Eurotop</h3>
-              <p class="text-xs text-stone-500 mt-1">72x36x6" & Custom Sizes • 7-Zone Support</p>
-            </div>
-            <div class="text-right">
-              <span class="text-xs text-stone-400 block line-through">₹18,000</span>
-              <span class="font-display font-bold text-base text-stone-950">₹14,500</span>
-            </div>
-          </div>
-        </div>
+      <!-- CATEGORY TABS -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-8" id="categoryTabs">
+        <!-- Rendered dynamically -->
+      </div>
 
-        <!-- CARD 2: DOUBLE DOOR DRESSING TABLE -->
-        <div class="catalog-item group flex flex-col" data-category="dressing">
-          <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone-200 border border-stone-200/80 mb-5">
-            <img src="./images/dressing.jpg" alt="Double Door Dressing Unit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute top-4 left-4">
-              <span class="bg-white/90 backdrop-blur-md text-stone-900 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
-                2½ Feet Polish
-              </span>
-            </div>
-            <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20want%20to%20order%20the%202.5%20Feet%20Double%20Door%20Dressing%20Table." 
-               target="_blank" 
-               class="absolute bottom-4 right-4 bg-stone-950 hover:bg-accent-forest text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl translate-y-2 group-hover:translate-y-0">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
-            </a>
-          </div>
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Bedroom Dressing</span>
-              <h3 class="font-display font-bold text-lg text-stone-950 mt-0.5 group-hover:text-accent-forest transition-colors">Double Door Vanity & Mirror</h3>
-              <p class="text-xs text-stone-500 mt-1">Full-Length Crystal Mirror • Concealed Shelves</p>
-            </div>
-            <div class="text-right">
-              <span class="text-xs text-stone-400 block line-through">₹8,000</span>
-              <span class="font-display font-bold text-base text-stone-950">₹6,500</span>
-            </div>
-          </div>
+      <!-- RESULTS COUNT & SORT -->
+      <div class="flex items-center justify-between text-xs text-stone-500 font-semibold mb-6">
+        <span id="resultsCount">Showing pieces</span>
+        <div class="flex items-center gap-2">
+          <span>Sort:</span>
+          <select id="sortSelect" onchange="handleSort(this.value)" class="bg-transparent font-bold text-stone-900 focus:outline-none cursor-pointer">
+            <option value="featured">Featured Showroom Pieces</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="stock">High Stock Available</option>
+          </select>
         </div>
+      </div>
 
-        <!-- CARD 3: STEEL ALMIRAH -->
-        <div class="catalog-item group flex flex-col" data-category="storage">
-          <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone-200 border border-stone-200/80 mb-5">
-            <img src="./images/almirahs.jpg" alt="Architectural Steel Wardrobe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute top-4 left-4">
-              <span class="bg-white/90 backdrop-blur-md text-stone-900 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
-                Heavy 18-Gauge
-              </span>
-            </div>
-            <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20please%20share%20Steel%20Almirah%20models%20and%20prices." 
-               target="_blank" 
-               class="absolute bottom-4 right-4 bg-stone-950 hover:bg-accent-forest text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl translate-y-2 group-hover:translate-y-0">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
-            </a>
-          </div>
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Architectural Storage</span>
-              <h3 class="font-display font-bold text-lg text-stone-950 mt-0.5 group-hover:text-accent-forest transition-colors">Triveni Safe Steel Almirah</h3>
-              <p class="text-xs text-stone-500 mt-1">Multi-Point Locking • Powder Coated</p>
-            </div>
-            <div class="text-right">
-              <span class="text-xs text-stone-400 block">Direct Factory</span>
-              <span class="font-display font-bold text-base text-accent-forest">Inquire Rate</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 4: COOL XPERT TOWER COOLER -->
-        <div class="catalog-item group flex flex-col" data-category="cooling">
-          <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone-200 border border-stone-200/80 mb-5">
-            <img src="./images/coolers.jpg" alt="Cool Xpert Tower Air Cooler" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute top-4 left-4">
-              <span class="bg-white/90 backdrop-blur-md text-stone-900 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
-                High-Air Throw
-              </span>
-            </div>
-            <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20want%20to%20inquire%20about%20Cool%20Xpert%20Coolers." 
-               target="_blank" 
-               class="absolute bottom-4 right-4 bg-stone-950 hover:bg-accent-forest text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl translate-y-2 group-hover:translate-y-0">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
-            </a>
-          </div>
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Summer Appliances</span>
-              <h3 class="font-display font-bold text-lg text-stone-950 mt-0.5 group-hover:text-accent-forest transition-colors">Cool Xpert Heavy Tower & Top</h3>
-              <p class="text-xs text-stone-500 mt-1">Heavy-Duty Motor • Honeycomb Pads</p>
-            </div>
-            <div class="text-right">
-              <span class="text-xs text-stone-400 block line-through">₹8,500</span>
-              <span class="font-display font-bold text-base text-stone-950">₹6,900</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 5: TEAK WOOD COT -->
-        <div class="catalog-item group flex flex-col" data-category="seating">
-          <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone-200 border border-stone-200/80 mb-5">
-            <img src="https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&w=1200&q=80" alt="Teak Wood Master King Cot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute top-4 left-4">
-              <span class="bg-white/90 backdrop-blur-md text-stone-900 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
-                Solid CP Teak
-              </span>
-            </div>
-            <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20want%20photos%20and%20rates%20for%20Teak%20Wood%20Cots." 
-               target="_blank" 
-               class="absolute bottom-4 right-4 bg-stone-950 hover:bg-accent-forest text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl translate-y-2 group-hover:translate-y-0">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
-            </a>
-          </div>
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Master Sanctuary</span>
-              <h3 class="font-display font-bold text-lg text-stone-950 mt-0.5 group-hover:text-accent-forest transition-colors">Seasoned CP Teak King Cot</h3>
-              <p class="text-xs text-stone-500 mt-1">Carved Architectural Headboard • Storage Option</p>
-            </div>
-            <div class="text-right">
-              <span class="text-xs text-stone-400 block">Custom Dimensions</span>
-              <span class="font-display font-bold text-base text-accent-forest">Inquire Rate</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 6: SCANDINAVIAN SECTIONAL SOFA -->
-        <div class="catalog-item group flex flex-col" data-category="seating">
-          <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-stone-200 border border-stone-200/80 mb-5">
-            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80" alt="Custom Sectional Lounge Sofa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute top-4 left-4">
-              <span class="bg-white/90 backdrop-blur-md text-stone-900 text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
-                50+ Fabrics
-              </span>
-            </div>
-            <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20am%20looking%20for%20a%20living%20room%20sofa%20set." 
-               target="_blank" 
-               class="absolute bottom-4 right-4 bg-stone-950 hover:bg-accent-forest text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-xl translate-y-2 group-hover:translate-y-0">
-              <i data-lucide="message-circle" class="w-4 h-4"></i>
-            </a>
-          </div>
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Living Suite</span>
-              <h3 class="font-display font-bold text-lg text-stone-950 mt-0.5 group-hover:text-accent-forest transition-colors">Bespoke Modular Lounge Suite</h3>
-              <p class="text-xs text-stone-500 mt-1">L-Shape / 3+1+1 Options • Hardwood Frame</p>
-            </div>
-            <div class="text-right">
-              <span class="text-xs text-stone-400 block">Custom Layout</span>
-              <span class="font-display font-bold text-base text-accent-forest">Inquire Rate</span>
-            </div>
-          </div>
-        </div>
-
+      <!-- PRODUCT CARDS GRID (RENDERED DYNAMICALLY) -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsContainer">
+        <!-- Javascript populates this grid dynamically -->
       </div>
 
     </div>
   </section>
 
-  <!-- MATERIALITY & PHILOSOPHY (ODAMA SCANDINAVIAN CRAFTSMANSHIP EDITORIAL) -->
-  <section id="craftsmanship" class="py-24 bg-stone-100 border-t border-stone-200">
+  <!-- MATERIALITY & WORKSHOP CRAFTSMANSHIP -->
+  <section id="materials" class="py-24 bg-white border-t border-stone-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-6 space-y-6">
-          <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-accent-clay block">Material Philosophy</span>
+          <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-accent-clay block">Material Standards</span>
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-950 leading-tight">
-            Furniture that ages with grace.
+            Engineered for generations, not just seasons.
           </h2>
           <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
-            Fast furniture breaks within years and ends in landfills. We design according to enduring architectural standards: solid CP teak timber that develops a rich natural patina, cold-rolled steel engineered with multi-tank powder coating, and doctor-approved rebonded orthopedic mattresses that nurture posture for a lifetime.
+            Every piece in our Siddipet showroom undergoes rigorous material validation. From 18-gauge cold-rolled steel sheet stamping to 32-density breathable jacquard quilting, we ensure every rupee you spend delivers lasting value.
           </p>
 
-          <div class="space-y-4 pt-4 border-t border-stone-200">
-            <div class="flex items-start gap-4">
-              <span class="font-display font-bold text-lg text-stone-400 shrink-0">01</span>
-              <div>
-                <h4 class="font-display font-bold text-base text-stone-950">Seasoned Central Province Teak</h4>
-                <p class="text-xs text-stone-500 mt-0.5">Kiln-dried and naturally seasoned to prevent warping, seasonal swelling, and wood-borer intrusion.</p>
-              </div>
+          <div class="grid grid-cols-2 gap-6 pt-4 border-t border-stone-200">
+            <div>
+              <span class="font-display font-bold text-xl text-stone-950 block">Seasoned CP Teak</span>
+              <p class="text-xs text-stone-500 mt-1">Kiln-treated solid timber resistant to monsoon humidity and seasonal expansion.</p>
             </div>
-
-            <div class="flex items-start gap-4">
-              <span class="font-display font-bold text-lg text-stone-400 shrink-0">02</span>
-              <div>
-                <h4 class="font-display font-bold text-base text-stone-950">Architectural 18-Gauge Steel</h4>
-                <p class="text-xs text-stone-500 mt-0.5">Precision sheet metal fabrication with concealed rivets, high-security Triveni lockers, and chip-proof epoxy finish.</p>
-              </div>
+            <div>
+              <span class="font-display font-bold text-xl text-stone-950 block">CR 18-Gauge Steel</span>
+              <p class="text-xs text-stone-500 mt-1">Multi-stage 7-tank powder-coated metal fabrication with tamper-proof Triveni security locks.</p>
             </div>
-
-            <div class="flex items-start gap-4">
-              <span class="font-display font-bold text-lg text-stone-400 shrink-0">03</span>
-              <div>
-                <h4 class="font-display font-bold text-base text-stone-950">Medical-Grade Rebonded Cores</h4>
-                <p class="text-xs text-stone-500 mt-0.5">High-density rebonded sleep systems contoured to relieve pressure on the lumbar spine and cervical vertebrae.</p>
-              </div>
+            <div>
+              <span class="font-display font-bold text-xl text-stone-950 block">32D Jacquard Foam</span>
+              <p class="text-xs text-stone-500 mt-1">Certified orthopedic spinal alignment foam that prevents lumbar sagging over years of rest.</p>
+            </div>
+            <div>
+              <span class="font-display font-bold text-xl text-stone-950 block">Heavy Cool Xpert Motor</span>
+              <p class="text-xs text-stone-500 mt-1">Pure copper winding motors with dense honeycomb cooling pads built for harsh Telangana summers.</p>
             </div>
           </div>
         </div>
 
         <div class="lg:col-span-6">
-          <div class="relative rounded-3xl overflow-hidden bg-stone-300 border border-stone-300 shadow-xl">
-            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80" 
-                 alt="Architectural Furniture Materials" 
-                 class="w-full h-[480px] object-cover" />
-            <div class="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-stone-200/80 shadow-lg">
-              <span class="text-[10px] font-bold uppercase tracking-widest text-accent-clay block">The Workshop Guarantee</span>
+          <div class="relative rounded-3xl overflow-hidden bg-stone-100 border border-stone-300 shadow-xl">
+            <img src="./images/showroom.jpg" alt="Showroom craftsmanship" class="w-full h-[520px] object-cover" />
+            <div class="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-stone-200/80 shadow-lg">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-accent-clay block">The Maruthi Standard</span>
               <p class="font-display font-bold text-sm text-stone-900 mt-1">
-                "We test every joint, inspect every sheet gauge, and verify every mattress density before anything leaves our doors."
+                "Direct from factory craftsmen to your room. Zero middleman markup, 100% transparency on timber grade and steel gauge."
               </p>
             </div>
           </div>
@@ -569,75 +408,83 @@
     </div>
   </section>
 
-  <!-- SHOWROOM EXPERIENCE & CONCIERGE -->
-  <section id="showroom" class="py-24 bg-white border-t border-stone-200">
+  <!-- SHOWROOM FLAGSHIP & DIGITAL PAYMENTS -->
+  <section id="showroom" class="py-24 bg-stone-100 border-t border-stone-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid lg:grid-cols-12 gap-12 items-center">
         
-        <!-- REAL SHOWROOM PHOTO -->
-        <div class="lg:col-span-6">
-          <div class="relative rounded-3xl overflow-hidden bg-stone-100 border border-stone-200 shadow-xl group">
-            <img src="./images/showroom.jpg" alt="Maruthi Furnitures Showroom Siddipet" class="w-full h-[460px] object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent"></div>
-            
-            <div class="absolute bottom-6 left-6 right-6 text-white">
-              <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 block mb-1">Bypass Road Flagship</span>
-              <div class="font-display font-bold text-2xl">Beside RS Metro Gardens, Siddipet</div>
-              <p class="text-xs text-stone-300 mt-1">Walk in any day of the week to explore over 100+ ready display models.</p>
+        <!-- SHOWROOM MAP & LOCATION -->
+        <div class="lg:col-span-7 space-y-6">
+          <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-accent-clay block">Siddipet Flagship</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-stone-950">
+            Touch and Experience the Quality
+          </h2>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            Conveniently situated on Bypass Road, beside RS Metro Gardens. Walk in to test mattress firmness, try out dressing unit mirrors, and choose your favorite wardrobe colors in person.
+          </p>
+
+          <div class="relative rounded-3xl overflow-hidden shadow-xl border-2 border-white h-80 sm:h-96">
+            <iframe 
+              title="Maruthi Furnitures Location Beside RS Metro Gardens" 
+              src="https://www.google.com/maps?q=18.0840710,78.8528711&output=embed" 
+              loading="lazy" 
+              class="w-full h-full border-0">
+            </iframe>
+            <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow border border-stone-200 text-xs font-bold flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-red-500"></i>
+              <span>Beside RS Metro Gardens, Siddipet</span>
+              <a href="https://maps.app.goo.gl/HXXPsA8vDLrzfBRb6?g_st=iw" target="_blank" class="text-accent-forest hover:underline ml-2">Directions →</a>
             </div>
           </div>
         </div>
 
-        <!-- DETAILS & CONCIERGE -->
-        <div class="lg:col-span-6 space-y-6" id="concierge">
-          <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-accent-clay block">Showroom Experience</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-stone-950">
-            Visit Us or Order by Concierge
-          </h2>
-          <p class="text-stone-600 text-sm leading-relaxed">
-            Whether you want to inspect wood finishes in person or order over a quick WhatsApp video consultation, our team is at your service.
-          </p>
+        <!-- DIGITAL DESK & CONTACT -->
+        <div class="lg:col-span-5 space-y-6" id="contact">
+          <div class="bg-white rounded-3xl p-8 border border-stone-300 shadow-xl space-y-6">
+            
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">
+                Verified Merchant Desk
+              </span>
+              <h3 class="font-display font-bold text-2xl text-stone-950 mt-3">Digital UPI Payments</h3>
+              <p class="text-xs text-stone-500 mt-1">Official showroom Paytm QR code for booking advances and khata bill settlements.</p>
+            </div>
 
-          <div class="space-y-4 pt-2">
-            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-start gap-4">
-              <div class="w-10 h-10 rounded-full bg-stone-950 text-white flex items-center justify-center shrink-0">
-                <i data-lucide="map-pin" class="w-4 h-4"></i>
+            <!-- PAYTM QR CODE -->
+            <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 max-w-[220px] mx-auto text-center">
+              <img src="./images/paytm-qr.jpg" alt="Official Paytm QR Code" class="w-full h-auto object-contain rounded-xl shadow-sm" />
+              <div class="text-[11px] font-bold text-stone-900 mt-2">
+                ALAKANTI SAI NITHIN
               </div>
-              <div>
-                <div class="font-display font-bold text-sm text-stone-950">Showroom Coordinates</div>
-                <div class="text-xs text-stone-600 mt-0.5">Bypass Road, Mytri Vanam, Beside RS Metro Garden, Siddipet – 502103</div>
-                <a href="https://maps.app.goo.gl/HXXPsA8vDLrzfBRb6?g_st=iw" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-accent-forest hover:underline mt-1">
-                  Open in Google Maps <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </a>
+              <div class="text-[10px] text-stone-500">
+                paytm.s36d65m@pty
               </div>
             </div>
 
-            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-start gap-4">
-              <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
-                <i data-lucide="phone-call" class="w-4 h-4"></i>
+            <div class="space-y-3 pt-2 text-xs border-t border-stone-100">
+              <div class="flex items-center justify-between">
+                <span class="text-stone-500">Showroom Phone:</span>
+                <a href="tel:+919908267125" class="font-bold text-stone-900 hover:text-accent-forest">+91 9908267125</a>
               </div>
-              <div>
-                <div class="font-display font-bold text-sm text-stone-950">Direct Contact & WhatsApp</div>
-                <div class="text-xs text-stone-600 mt-0.5"><a href="tel:+919908267125" class="hover:underline font-semibold">+91 9908267125</a> • Open 7 Days: 9:30 AM – 9:30 PM</div>
-                <div class="text-[11px] text-stone-500 mt-0.5">maruthifurnitures001@gmail.com</div>
+              <div class="flex items-center justify-between">
+                <span class="text-stone-500">Operating Days:</span>
+                <span class="font-bold text-emerald-700">Open All 7 Days (9:30 AM – 9:30 PM)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-stone-500">Official Instagram:</span>
+                <a href="https://www.instagram.com/maruthifurnitures_7/" target="_blank" class="font-bold text-stone-900 hover:text-accent-forest">@maruthifurnitures_7</a>
               </div>
             </div>
 
-            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex items-center justify-between gap-4">
-              <div class="flex items-center gap-3">
-                <img src="./images/paytm-qr.jpg" alt="UPI Paytm QR" class="w-12 h-12 object-contain bg-white rounded-lg p-1 border border-stone-200" />
-                <div>
-                  <div class="font-display font-bold text-xs text-stone-950">Verified Digital Payments</div>
-                  <div class="text-[11px] text-stone-500">Paytm, PhonePe, GPay, BHIM & UPI Accepted</div>
-                </div>
-              </div>
-              <a href="https://wa.me/919908267125" target="_blank" class="bg-stone-950 hover:bg-accent-forest text-white text-xs font-bold px-4 py-2 rounded-full transition-colors">
-                Book Visit
-              </a>
-            </div>
+            <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20am%20planning%20to%20visit%20your%20showroom." 
+               target="_blank" 
+               class="w-full inline-flex items-center justify-center gap-2 bg-stone-950 hover:bg-accent-forest text-white font-bold text-xs py-3.5 rounded-full transition-all shadow-md">
+              <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+              <span>Message Showroom on WhatsApp</span>
+            </a>
+
           </div>
-
         </div>
 
       </div>
@@ -657,21 +504,21 @@
             <span class="font-display font-bold text-white text-lg tracking-tight">MARUTHI FURNITURES</span>
           </div>
           <p class="text-xs text-stone-400 max-w-sm leading-relaxed">
-            Contemporary showroom in Siddipet for architectural woodcraft, ergonomic mattresses, and steel storage systems.
+            Siddipet's premier retail & wholesale furniture showroom. Teak wood cots, luxury sofas, orthopedic mattresses, steel almirahs, dressing tables & air coolers.
           </p>
           <div class="text-xs text-stone-300">
-            Bypass Road, Beside RS Metro Gardens, Siddipet, Telangana
+            Bypass Road, Beside RS Metro Gardens, Siddipet, Telangana – 502103
           </div>
         </div>
 
         <div class="col-span-1 md:col-span-2 space-y-3">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-white">Collections</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-white">Categories</span>
           <ul class="text-xs space-y-2">
-            <li><a href="#featured" class="hover:text-white transition-colors">Orthopedic Mattresses</a></li>
-            <li><a href="#featured" class="hover:text-white transition-colors">Teak Wood Cots</a></li>
-            <li><a href="#featured" class="hover:text-white transition-colors">Dressing Units</a></li>
-            <li><a href="#featured" class="hover:text-white transition-colors">Steel Almirahs</a></li>
-            <li><a href="#featured" class="hover:text-white transition-colors">Cool Xpert Coolers</a></li>
+            <li><button onclick="setCategoryFilter('Mattress')" class="hover:text-white transition-colors">Mattresses (14)</button></li>
+            <li><button onclick="setCategoryFilter('Almirah')" class="hover:text-white transition-colors">Steel Almirahs (5)</button></li>
+            <li><button onclick="setCategoryFilter('Dressing Table')" class="hover:text-white transition-colors">Dressing Units (5)</button></li>
+            <li><button onclick="setCategoryFilter('Air Cooler')" class="hover:text-white transition-colors">Air Coolers (4)</button></li>
+            <li><button onclick="setCategoryFilter('chairs')" class="hover:text-white transition-colors">Chairs (4)</button></li>
           </ul>
         </div>
 
@@ -686,9 +533,9 @@
         </div>
 
         <div class="col-span-2 md:col-span-3 space-y-3">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-white">Internal Portal</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-white">Authorized Terminal</span>
           <p class="text-xs text-stone-500">
-            Authorized showroom billing, inventory, and Khata ERP terminal.
+            Staff & Owner billing, stock inward, and customer Khata ERP portal.
           </p>
           <a href="https://16.179.197.236.sslip.io" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 border border-stone-800 bg-stone-900 px-4 py-2.5 rounded-full transition-all">
             <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Launch Staff POS
@@ -712,37 +559,273 @@
   <!-- FLOATING CONCIERGE PILL (BOTTOM RIGHT) -->
   <a href="https://wa.me/919908267125?text=Hello%20Maruthi%20Furnitures,%20I%20have%20an%20inquiry%20regarding%20your%20pieces." 
      target="_blank" 
-     class="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 bg-stone-950 hover:bg-accent-forest text-white text-xs font-semibold px-5 py-3.5 rounded-full shadow-2xl border border-white/10 hover:scale-105 transition-all">
+     class="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2.5 bg-stone-950 hover:bg-accent-forest text-white text-xs font-semibold px-5 py-3.5 rounded-full shadow-2xl border border-white/10 hover:scale-105 transition-all pulse-glow">
     <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
     <span>Chat with Showroom</span>
   </a>
 
-  <!-- SCRIPTS -->
+  <!-- DYNAMIC PRODUCT INQUIRY MODAL (4K POPUP) -->
+  <div id="inquiryModal" class="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 relative transform transition-all">
+      <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-600 absolute right-6 top-6 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="space-y-4">
+        <div>
+          <span id="modalCat" class="text-[10px] font-extrabold uppercase tracking-widest text-accent-clay bg-stone-100 px-2.5 py-1 rounded-md">Category</span>
+          <h3 id="modalTitle" class="font-display font-bold text-2xl text-stone-950 mt-2">Product Name</h3>
+          <p id="modalDesc" class="text-xs text-stone-500 mt-1">Product Description</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-stone-400 block">Showroom Price</span>
+            <span id="modalPrice" class="font-display font-bold text-2xl text-stone-950">₹0</span>
+          </div>
+          <div id="modalStock" class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+            ● In Stock
+          </div>
+        </div>
+
+        <!-- Custom Order Options -->
+        <div class="space-y-3">
+          <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider">Your Delivery Location</label>
+          <select id="modalLocation" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-xs font-semibold text-stone-900 focus:outline-none focus:ring-2 focus:ring-stone-950">
+            <option value="Siddipet Town (Free Delivery)">Siddipet Town (Free Doorstep Delivery)</option>
+            <option value="Dubbak Mandal">Dubbak Mandal</option>
+            <option value="Gajwel / Pragnapur">Gajwel / Pragnapur</option>
+            <option value="Sircilla">Sircilla</option>
+            <option value="Hyderabad / Secunderabad">Hyderabad / Secunderabad</option>
+            <option value="Other Location">Other Telangana Location</option>
+          </select>
+        </div>
+
+        <button onclick="dispatchWhatsAppOrder()" class="w-full inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm py-4 rounded-full shadow-lg transition-all">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Send Booking Request on WhatsApp</span>
+        </button>
+
+        <p class="text-[10px] text-center text-stone-400">
+          Direct connection to showroom owner Alakanti Sai Nithin (+91 9908267125).
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETE REAL MARUTHI DATABASE & CLIENT LOGIC -->
   <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
+    // Real Maruthi Products Database from db_backup.json
+    const PRODUCTS = [
+      // Mattresses
+      { id: 10, name: 'Mattress 72x36x6" R/B Eurotop', category: 'Mattress', price: 14500, stock: 4, description: '72x36x6 inch Rebonded Eurotop Two Top Mattress. Doctor-recommended lumbar contouring.', image: './images/mattresses.jpg', tag: 'Bestseller' },
+      { id: 11, name: 'Mattress 75x36x6" R/B Eurotop (24mm)', category: 'Mattress', price: 14500, stock: 4, description: '75x36x6 inch Rebonded Eurotop 24mm luxury cushion quilt.', image: './images/mattresses.jpg', tag: 'Luxury Top' },
+      { id: 12, name: 'Mattress 75x36x6" R/B Regular', category: 'Mattress', price: 13500, stock: 4, description: '75x36x6 inch Rebonded Foam Regular Firm Orthopedic Mattress.', image: './images/mattresses.jpg', tag: 'Firm Spine' },
+      { id: 13, name: 'Mattress 72x36x5" 32D (J) (20mm)', category: 'Mattress', price: 14000, stock: 4, description: '72x36x5 inch 32 Density Jacquard Fabric 20mm Quilt.', image: './images/mattresses.jpg', tag: '32 Density' },
+      { id: 14, name: 'Mattress 75x36x5" 32D (J)', category: 'Mattress', price: 15000, stock: 4, description: '75x36x5 inch 32 Density Breathable Jacquard Fabric Mattress.', image: './images/mattresses.jpg', tag: 'Premium Jacquard' },
+      { id: 15, name: 'Mattress 75x36x5" 28D (J) (16mm)', category: 'Mattress', price: 9500, stock: 4, description: '75x36x5 inch 28 Density Jacquard Fabric 16mm Mattress.', image: './images/mattresses.jpg', tag: 'Popular Choice' },
+      { id: 16, name: 'Mattress 72x36x5" 28D (J)', category: 'Mattress', price: 9500, stock: 2, description: '72x36x5 inch 28 Density Jacquard Fabric Mattress.', image: './images/mattresses.jpg', tag: 'In Stock' },
+      { id: 17, name: 'Mattress 72x36x5" 28D (Satin)', category: 'Mattress', price: 8500, stock: 4, description: '72x36x5 inch 28 Density Satin Fabric Smooth Finish Mattress.', image: './images/mattresses.jpg', tag: 'Satin Finish' },
+      { id: 18, name: 'Mattress 75x36x5" 28D (Satin)', category: 'Mattress', price: 8500, stock: 4, description: '75x36x5 inch 28 Density Satin Fabric Smooth Finish Mattress.', image: './images/mattresses.jpg', tag: 'Satin Finish' },
+      { id: 19, name: 'Mattress 72x48x6" R/B Regular', category: 'Mattress', price: 12500, stock: 2, description: '72x48x6 inch 4-Feet Rebonded Regular Mattress for Double Cots.', image: './images/mattresses.jpg', tag: '4-Feet Double' },
+      { id: 20, name: 'Mattress 72x48x5" 32D (J)', category: 'Mattress', price: 9000, stock: 1, description: '72x48x5 inch 4-Feet 32 Density Jacquard Double Mattress.', image: './images/mattresses.jpg', tag: '4-Feet' },
+      { id: 21, name: 'Mattress 75x48x5" 32D (J)', category: 'Mattress', price: 9500, stock: 1, description: '75x48x5 inch 4-Feet 32 Density Jacquard Double Mattress.', image: './images/mattresses.jpg', tag: '4-Feet' },
+      { id: 22, name: 'Mattress 75x36x4" E/P Foam', category: 'Mattress', price: 3000, stock: 4, description: '75x36x4 inch Expanded Poly / PU Foam Budget Mattress.', image: './images/mattresses.jpg', tag: 'Budget Friendly' },
+      { id: 23, name: '75x36x5" (3+1+1) Cushion Set', category: 'Mattress', price: 6000, stock: 6, description: '75x36x5 inch 3+1+1 Sofa Cushion & Mattress Set.', image: './images/mattresses.jpg', tag: 'Sofa Cushion Set' },
 
-    // Catalog category filtering
-    function setFilter(category) {
-      const items = document.querySelectorAll('.catalog-item');
-      const pills = document.querySelectorAll('.filter-pill');
+      // Almirahs
+      { id: 25, name: 'P.C 48 Almirah (with Mirror)', category: 'Almirah', price: 18500, stock: 1, description: 'P.C 48 heavy-gauge steel almirah wardrobe with full-length crystal mirror, internal secret locker and multi-tier shelves.', image: './images/almirahs.jpg', tag: 'With Mirror' },
+      { id: 26, name: 'P.C 46 Almirah (without Mirror)', category: 'Almirah', price: 16500, stock: 1, description: 'P.C 46 size heavy-gauge cold rolled steel almirah wardrobe without mirror.', image: './images/almirahs.jpg', tag: 'Heavy Gauge' },
+      { id: 27, name: 'Family Almirah (Light 38)', category: 'Almirah', price: 13000, stock: 1, description: 'Family size steel almirah (Light 38 model) with powder coat.', image: './images/almirahs.jpg', tag: 'Family Size' },
+      { id: 28, name: 'CR. 38 Almirah', category: 'Almirah', price: 10000, stock: 1, description: 'CR 38 model cold-rolled steel wardrobe with multi-lock security.', image: './images/almirahs.jpg', tag: 'Cold Rolled' },
+      { id: 29, name: 'Mt-38 Almirah', category: 'Almirah', price: 9000, stock: 1, description: 'Mt 38 model steel almirah with rust-resistant epoxy finish.', image: './images/almirahs.jpg', tag: 'Direct Factory' },
 
-      pills.forEach(pill => {
-        pill.classList.remove('bg-stone-950', 'text-white', 'active');
-        pill.classList.add('bg-stone-200/80', 'text-stone-700');
-      });
+      // Dressing Tables
+      { id: 9, name: '2½ Feet Polish Double Door Dressing Table', category: 'Dressing Table', price: 6500, stock: 8, description: '2.5 ft polished double door dressing unit with full length mirror and private cosmetic drawers.', image: './images/dressing.jpg', tag: 'Double Door' },
+      { id: 8, name: '2½ Feet Special Beeding Dressing Table', category: 'Dressing Table', price: 6000, stock: 2, description: '2.5 ft dressing table with special decorative beeding and crystal mirror.', image: './images/dressing.jpg', tag: 'Special Beeding' },
+      { id: 5, name: '2 Feet Self Polish Dressing Table', category: 'Dressing Table', price: 4500, stock: 10, description: '2 ft self-polished steel dressing table with storage cabinet.', image: './images/dressing.jpg', tag: 'Self Polish' },
+      { id: 6, name: '2 Feet Polish Box Dressing Table', category: 'Dressing Table', price: 4200, stock: 10, description: '2 ft polished box type dressing table for compact bedroom spaces.', image: './images/dressing.jpg', tag: 'Box Model' },
+      { id: 7, name: '2 Feet Beeding Dressing Table', category: 'Dressing Table', price: 3500, stock: 8, description: '2 ft standard beeding steel dressing table with mirror.', image: './images/dressing.jpg', tag: 'Value Choice' },
 
-      event.target.classList.add('bg-stone-950', 'text-white', 'active');
-      event.target.classList.remove('bg-stone-200/80', 'text-stone-700');
+      // Air Coolers
+      { id: 3, name: 'Cool Xpert Tower Cooler', category: 'Air Cooler', price: 6900, stock: 14, description: 'Cool Xpert tower model heavy air cooler with high-air throw and high-density pads.', image: './images/coolers.jpg', tag: 'High Throw Tower' },
+      { id: 2, name: 'Cool Xpert Plastic Top (P. Top)', category: 'Air Cooler', price: 6700, stock: 12, description: 'Cool Xpert air cooler with molded plastic water top for easy filling.', image: './images/coolers.jpg', tag: 'Plastic Top' },
+      { id: 1, name: 'Cool Xpert Plain (B)', category: 'Air Cooler', price: 6500, stock: 14, description: 'Cool Xpert plain body air cooler (Brown finish) with heavy copper motor.', image: './images/coolers.jpg', tag: 'Heavy Motor' },
+      { id: 4, name: 'Everest Air Cooler', category: 'Air Cooler', price: 4500, stock: 12, description: 'Everest brand heavy air cooler for bedroom and shop cooling.', image: './images/coolers.jpg', tag: 'Budget Summer' },
 
-      items.forEach(item => {
-        if (category === 'all' || item.getAttribute('data-category') === category) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
-        }
-      });
+      // Chairs
+      { id: 33, name: 'Neurospin Ortho Ergonomic Chair', category: 'chairs', price: 850, stock: 6, description: 'Ergonomic lumbar spine support molded chair.', image: 'https://images.unsplash.com/photo-1580481077195-c3a821a58875?auto=format&fit=crop&w=800&q=80', tag: 'Ergonomic' },
+      { id: 32, name: 'Tub Lounge Chair', category: 'chairs', price: 850, stock: 5, description: 'Heavy molded tub lounge chair for study and balcony.', image: 'https://images.unsplash.com/photo-1580481077195-c3a821a58875?auto=format&fit=crop&w=800&q=80', tag: 'Tub Shape' },
+      { id: 35, name: 'Sumo Heavy Chair', category: 'chairs', price: 650, stock: 12, description: 'Extra heavy load capacity molded chair.', image: 'https://images.unsplash.com/photo-1580481077195-c3a821a58875?auto=format&fit=crop&w=800&q=80', tag: 'Heavy Duty' },
+      { id: 34, name: 'Armless Utility Chair', category: 'chairs', price: 460, stock: 10, description: 'Comfortable stackable armless chair.', image: 'https://images.unsplash.com/photo-1580481077195-c3a821a58875?auto=format&fit=crop&w=800&q=80', tag: 'Stackable' }
+    ];
+
+    let currentCategory = 'all';
+    let currentSearch = '';
+    let currentSort = 'featured';
+    let activeModalProduct = null;
+
+    // Build Category Tabs
+    function buildTabs() {
+      const categories = ['all', 'Mattress', 'Almirah', 'Dressing Table', 'Air Cooler', 'chairs'];
+      const labels = {
+        'all': `All (${PRODUCTS.length})`,
+        'Mattress': `Mattresses (${PRODUCTS.filter(p => p.category === 'Mattress').length})`,
+        'Almirah': `Steel Almirahs (${PRODUCTS.filter(p => p.category === 'Almirah').length})`,
+        'Dressing Table': `Dressing Tables (${PRODUCTS.filter(p => p.category === 'Dressing Table').length})`,
+        'Air Cooler': `Air Coolers (${PRODUCTS.filter(p => p.category === 'Air Cooler').length})`,
+        'chairs': `Chairs (${PRODUCTS.filter(p => p.category === 'chairs').length})`
+      };
+
+      const container = document.getElementById('categoryTabs');
+      container.innerHTML = categories.map(cat => `
+        <button 
+          onclick="setCategoryFilter('${cat}')" 
+          class="cat-pill whitespace-nowrap text-xs font-semibold px-4 py-2 rounded-full transition-all ${cat === currentCategory ? 'bg-stone-950 text-white shadow-sm' : 'bg-white hover:bg-stone-200/70 text-stone-700 border border-stone-200/80'}">
+          ${labels[cat] || cat}
+        </button>
+      `).join('');
     }
+
+    function setCategoryFilter(cat) {
+      currentCategory = cat;
+      buildTabs();
+      renderProducts();
+    }
+
+    function handleSearch(val) {
+      currentSearch = val.toLowerCase().trim();
+      renderProducts();
+    }
+
+    function handleSort(val) {
+      currentSort = val;
+      renderProducts();
+    }
+
+    function renderProducts() {
+      let filtered = PRODUCTS.filter(p => {
+        const matchesCategory = (currentCategory === 'all' || p.category.toLowerCase() === currentCategory.toLowerCase());
+        const matchesSearch = !currentSearch || 
+          p.name.toLowerCase().includes(currentSearch) || 
+          p.category.toLowerCase().includes(currentSearch) || 
+          p.description.toLowerCase().includes(currentSearch);
+        return matchesCategory && matchesSearch;
+      });
+
+      // Sort
+      if (currentSort === 'price-low') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (currentSort === 'price-high') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (currentSort === 'stock') {
+        filtered.sort((a, b) => b.stock - a.stock);
+      }
+
+      document.getElementById('resultsCount').innerText = `Showing ${filtered.length} of ${PRODUCTS.length} showroom models`;
+
+      const container = document.getElementById('productsContainer');
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center space-y-3">
+            <i data-lucide="package-search" class="w-10 h-10 text-stone-400 mx-auto"></i>
+            <div class="font-display font-bold text-lg text-stone-900">No matching furniture pieces found</div>
+            <p class="text-xs text-stone-500">Try adjusting your search terms or browse our all categories tab.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <div class="group bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-4k transition-all duration-500 flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-[4/3] overflow-hidden bg-stone-100">
+              <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <div class="absolute top-3 left-3 flex flex-col gap-1">
+                <span class="bg-white/95 backdrop-blur-md text-stone-900 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
+                  ${item.tag || item.category}
+                </span>
+              </div>
+              <div class="absolute top-3 right-3">
+                <span class="bg-stone-950/80 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                  ● ${item.stock} left
+                </span>
+              </div>
+            </div>
+
+            <div class="p-5">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block">${item.category}</span>
+              <h3 class="font-display font-bold text-base text-stone-950 mt-1 line-clamp-1 group-hover:text-accent-forest transition-colors">
+                ${item.name}
+              </h3>
+              <p class="text-xs text-stone-500 mt-1.5 line-clamp-2 leading-relaxed">
+                ${item.description}
+              </p>
+            </div>
+          </div>
+
+          <div class="px-5 pb-5 pt-3 border-t border-stone-100 flex items-center justify-between">
+            <div>
+              <span class="text-[9px] uppercase tracking-wider font-bold text-stone-400 block">Showroom Price</span>
+              <span class="font-display font-extrabold text-base text-stone-950">₹${item.price.toLocaleString('en-IN')}</span>
+            </div>
+
+            <button 
+              onclick="openModal(${item.id})" 
+              class="inline-flex items-center gap-1.5 bg-stone-950 hover:bg-accent-forest text-white text-xs font-semibold px-3.5 py-2 rounded-full transition-colors shadow-sm">
+              <span>Inquire</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    // Modal logic
+    function openModal(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      if (!product) return;
+      activeModalProduct = product;
+
+      document.getElementById('modalCat').innerText = product.category;
+      document.getElementById('modalTitle').innerText = product.name;
+      document.getElementById('modalDesc').innerText = product.description;
+      document.getElementById('modalPrice').innerText = `₹${product.price.toLocaleString('en-IN')}`;
+      document.getElementById('modalStock').innerText = `● ${product.stock} units currently available in showroom`;
+
+      document.getElementById('inquiryModal').classList.remove('hidden');
+      document.getElementById('inquiryModal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('inquiryModal').classList.add('hidden');
+      document.getElementById('inquiryModal').classList.remove('flex');
+    }
+
+    function dispatchWhatsAppOrder() {
+      if (!activeModalProduct) return;
+      const location = document.getElementById('modalLocation').value;
+      const message = `Hello Maruthi Furnitures Siddipet,\n\nI want to book / inquire about this showroom piece:\n👉 Item: ${activeModalProduct.name}\n💰 Price: ₹${activeModalProduct.price.toLocaleString('en-IN')}\n📍 Delivery Destination: ${location}\n\nPlease share booking procedure and estimated delivery timeline.`;
+      
+      const url = `https://wa.me/919908267125?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+      closeModal();
+    }
+
+    function quickInquire(name, price, cat) {
+      const message = `Hello Maruthi Furnitures Siddipet,\n\nI am inquiring about the ${name} (Showroom Price: ₹${price}). Please share photos and availability.`;
+      const url = `https://wa.me/919908267125?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      buildTabs();
+      renderProducts();
+    });
   </script>
 
 </body>
